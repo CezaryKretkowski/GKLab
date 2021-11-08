@@ -66,7 +66,8 @@ bool Engine::init(int wHeight,int wWidth,int mode,int frameRate,bool KeyBoardON,
     if(this->setUp!=NULL)
         setUp(this);
     mainLoop();
-
+    if(this->setClear!=NULL)
+        setClear(this);
 
     return check;
 }
@@ -80,7 +81,9 @@ void Engine::overrideRunFun(void (*run)(Engine *parent)){
 void Engine::overrideSetUpFun(void (*setUp)(Engine *)) {
     this->setUp=*setUp;
 }
-
+void Engine::overrideClearFun(void (*clear)(Engine *parent)){
+    this->setClear=*clear;
+}
 void Engine::clear(sf::Color color) {
     this->frame->clear(color);
 }
@@ -116,4 +119,7 @@ void Engine::addKeyListener(KeyListener ls) {
 }
 sf::Event Engine::getEvent() {
     return this->event;
+}
+void Engine::clearKeys() {
+    this->KeyBaordList.clear();
 }

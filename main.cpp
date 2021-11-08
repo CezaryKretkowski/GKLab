@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "MenuFun.h"
 #include "PrimitiveRenderer.h"
+#include "LineSegment.h"
 void primityvRederfun(Engine *parent){
     PrimitiveRenderer render;
     //render.drawCircle(parent,sf::Color::Red,50);
@@ -52,20 +53,29 @@ void keyRelesed(Engine *parent){
 
     parent->clear();
 }
+void drawLine(Engine *super){
+    Point2D p1(300,400);
+    Point2D p2(300,400);
+    LineSegment ls();
 
+}
 int main() {
     Engine engine;
-    engine.overrideSetUpFun(&menuSetUp);
-    engine.overrideRunFun(&menuRun);
-
-//   KeyListener ks(sf::Keyboard::A,&primityvRederfun);
+   // engine.overrideSetUpFun(&menuSetUp);
+    //engine.overrideRunFun(&menuRun);
+    //engine.overrideClearFun(&menuClear);
+  /// KeyListener ks(sf::Keyboard::A,&primityvRederfun);
   // ks.overrideRelesedFun(&keyRelesed);
-  // engine.addKeyListener(ks);
+  //  engine.addKeyListener(ks);
     //MouseListener ml;
    // ml.overrideMousePressed(&clicked,LeftMouseButton);
     //ml.overrideMouseMove(&move);
     //ml.overrideMouseReleased(&Relesed,LeftMouseButton);
     //engine.listener=&ml;
     engine.init(800,600,WindowMode,false, true,false);
+
+
+    //if(engine.KeyBaordList.empty())
+      //  std::cout<<"wyczyszczona"<<std::endl;
     return 0;
 }

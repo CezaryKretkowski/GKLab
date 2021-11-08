@@ -7,10 +7,12 @@
 #include <SFML/Graphics.hpp>
 #include "Label.h"
 #include "Button.h"
+
 class MainMenu{
 private:
     sf::Image background;
     Label header;
+
 
 public:
     Button newGame;

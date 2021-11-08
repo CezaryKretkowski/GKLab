@@ -7,5 +7,6 @@
 #include "Engine.h"
 void menuRun(Engine *super);
 void menuSetUp(Engine *super);
+void menuClear(Engine *super);
 void menuEventSetUp(Engine *super,sf::Event e);
 #endif //GKLAB_MENUFUN_H

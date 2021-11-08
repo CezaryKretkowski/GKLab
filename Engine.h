@@ -27,17 +27,19 @@ private:
     bool end=false;
     bool KeyBoardON=false;
     bool MouseListenerON=false;
+public:
     std::list<KeyListener> KeyBaordList;
     void (*run)(Engine *parent)=NULL;
     void (*setUp)(Engine *parent)=NULL;
     void (*setEventUp)(Engine *parent)=NULL;
+    void (*setClear)(Engine *parent)=NULL;
 
 public:
     bool init(int wHeight=800,int wWidth=600,int mode=0,int frameRate=0,bool KeyBoardON=false,bool MouseListenerON=false);
     sf::RenderWindow* getFrame();
     void overrideRunFun(void (*run)(Engine *parent)=NULL);
     void overrideSetUpFun(void (*setUp)(Engine *parent)=NULL);
-
+    void overrideClearFun(void (*setClear)(Engine *parent)=NULL);
     void clear(sf::Color color=sf::Color::White);
     void clear(sf::Image img);
     void mainLoop();
@@ -51,7 +53,7 @@ public:
     sf::Texture* getSource();
     void getImg();
     MouseListener*listener;
-
+    void clearKeys();
 
     MainMenu menu;
 };

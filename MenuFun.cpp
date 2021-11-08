@@ -2,6 +2,12 @@
 // Created by cezar on 29.10.2021.
 //
 #include "MenuFun.h"
+#include <iostream>
+void ecapeEnd(Engine *parent){
+    parent->setEnd(false);
+    parent->getFrame()->close();
+    std::cout<<"działa"<<std::endl;
+}
 void menuRun(Engine *super) {
     super->clear(super->menu.getBackGround());
     super->getFrame()->draw(super->menu.getLabel()->getText());
@@ -11,6 +17,8 @@ void menuRun(Engine *super) {
 }
 
 void menuSetUp(Engine *super) {
+    KeyListener end(sf::Keyboard::Escape,&ecapeEnd);
+    super->addKeyListener(end);
     super->menu.setBackground("Menu2.jpg");
     super->getSource()->loadFromImage(super->menu.getBackGround());
     super->menu.getLabel()->setColor(sf::Color::Red);
@@ -41,5 +49,11 @@ void menuSetUp(Engine *super) {
     super->menu.endButton.setHight(50);
     super->menu.endButton.setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");
 
+
+}
+void menuClear(Engine *super){
+    super->overrideRunFun(NULL);
+    super->overrideSetUpFun(NULL);
+    super->clearKeys();
 
 }
