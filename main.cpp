@@ -55,12 +55,12 @@ void keyRelesed(Engine *parent){
 
 int main() {
     Engine engine;
-    //engine.overrideSetUpFun(&menuSetUp);
-    //engine.overrideRunFun(&menuRun);
+    engine.overrideSetUpFun(&menuSetUp);
+    engine.overrideRunFun(&menuRun);
 
-   KeyListener ks(sf::Keyboard::A,&primityvRederfun);
-   ks.overrideRelesedFun(&keyRelesed);
-   engine.addKeyListener(ks);
+//   KeyListener ks(sf::Keyboard::A,&primityvRederfun);
+  // ks.overrideRelesedFun(&keyRelesed);
+  // engine.addKeyListener(ks);
     //MouseListener ml;
    // ml.overrideMousePressed(&clicked,LeftMouseButton);
     //ml.overrideMouseMove(&move);
