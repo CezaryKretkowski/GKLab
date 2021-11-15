@@ -3,6 +3,7 @@
 #include "MenuFun.h"
 #include "PrimitiveRenderer.h"
 #include "LineSegment.h"
+#include "GameFun.h"
 void primityvRederfun(Engine *parent){
     PrimitiveRenderer render;
     //render.drawCircle(parent,sf::Color::Red,50);
@@ -55,18 +56,27 @@ void keyRelesed(Engine *parent){
 }
 void drawLine(Engine *super){
     Point2D p1(300,400);
-    Point2D p2(300,400);
-    LineSegment ls();
+    Point2D p2(500,500);
+    Point2D p3(700,200);
+    std::list<Point2D> ls;
+    ls.push_front(p1);
+    ls.push_front(p2);
+    ls.push_front(p3);
+    PrimitiveRenderer render;
+    render.drawSegment(super->getFrame(),sf::Color::White,ls);
+    //LineSegment ls(p1,p2);
+   // super->clear(sf::Color::Black);
+    //ls.Draw(super->getFrame(),sf::Color::White,false);
 
 }
 int main() {
     Engine engine;
-   // engine.overrideSetUpFun(&menuSetUp);
-    //engine.overrideRunFun(&menuRun);
+    engine.overrideSetUpFun(&GameSetUp);
+    engine.overrideRunFun(&GameRun);
     //engine.overrideClearFun(&menuClear);
-  /// KeyListener ks(sf::Keyboard::A,&primityvRederfun);
-  // ks.overrideRelesedFun(&keyRelesed);
-  //  engine.addKeyListener(ks);
+   //KeyListener ks(sf::Keyboard::A,&primityvRederfun);
+   //ks.overrideRelesedFun(&keyRelesed);
+    //engine.addKeyListener(ks);
     //MouseListener ml;
    // ml.overrideMousePressed(&clicked,LeftMouseButton);
     //ml.overrideMouseMove(&move);

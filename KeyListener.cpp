@@ -23,3 +23,6 @@ void KeyListener::setOnKeyPressedFun(void (*onKeyPressed)(Engine *parent)) {
 void KeyListener::overrideRelesedFun(void (*onReleasedPressed)(Engine *)) {
     this->onReleased=*onReleasedPressed;
 }
+void KeyListener::setKey(sf::Keyboard::Key key){
+    this->key=key;
+}

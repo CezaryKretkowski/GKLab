@@ -6,6 +6,7 @@
 #define GKLAB_ENGINE_H
 #include <SFML/Graphics.hpp>
 #include "MainMenu.h"
+#include "GameView.h"
 #include "KeyListener.h"
 #include "MouseListener.h"
 #include <list>
@@ -56,5 +57,6 @@ public:
     void clearKeys();
 
     MainMenu menu;
+    GameView game;
 };
 #endif //GKLAB_ENGINE_H

@@ -4,6 +4,7 @@
 #include <iostream>
 #include "PrimitiveRenderer.h"
 
+
 void PrimitiveRenderer::drawCircle(sf::RenderWindow *parent, sf::Color color, float size, float x, float y) {
     sf::CircleShape shape(size);
     shape.setFillColor(color);
@@ -116,4 +117,15 @@ void PrimitiveRenderer::drawLineMain(sf::RenderWindow *parent, sf::Color color, 
         }
     }
 
+}
+void PrimitiveRenderer::drawSegment(sf::RenderWindow *parent, sf::Color color, std::list<Point2D> ls) {
+    std::list<Point2D>::iterator i,w;
+    i=ls.begin();
+    w=i++;
+    while(w!=ls.end()&&i!=ls.end()){
+
+        drawLineMain(parent,color,*i,*w);
+        i++;
+        w++;
+    }
 }

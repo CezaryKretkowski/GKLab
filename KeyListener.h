@@ -16,6 +16,7 @@ public:
     KeyListener(sf::Keyboard::Key key,void (*onKeyPressed)(Engine *parent));
     void onKeyPressedFun(Engine* parent);
     void overrideRelesedFun(void (*onReleasedPressed)(Engine *parent));
+    void setKey(sf::Keyboard::Key key);
     void setOnKeyPressedFun(void (*onKeyPressed)(Engine *parent));
 
 };
