@@ -3,7 +3,7 @@
 //
 #include <iostream>
 #include "PrimitiveRenderer.h"
-
+#include "Pixel.h"
 
 void PrimitiveRenderer::drawCircle(sf::RenderWindow *parent, sf::Color color, float size, float x, float y) {
     sf::CircleShape shape(size);
@@ -118,6 +118,8 @@ void PrimitiveRenderer::drawLineMain(sf::RenderWindow *parent, sf::Color color, 
     }
 
 }
+
+
 void PrimitiveRenderer::drawSegment(sf::RenderWindow *parent, sf::Color color, std::list<Point2D> ls) {
     std::list<Point2D>::iterator i,w;
     i=ls.begin();
@@ -128,4 +130,46 @@ void PrimitiveRenderer::drawSegment(sf::RenderWindow *parent, sf::Color color, s
         i++;
         w++;
     }
+}
+sf::Color PrimitiveRenderer::getPixel(double x, double y,sf::RenderWindow* parent) {
+    //aa::RenderTexture r;
+
+    sf::Image img=parent->capture();
+    auto color = img.getPixel(x,y);
+    return color;
+}
+void PrimitiveRenderer::fileColor(sf::RenderWindow *parent,double x, double y,sf::Color fillColor) {
+            std::list<Pixel> dsd;
+            std::list<Pixel>::iterator i=dsd.begin();
+            Pixel tmp(x,y, sf::Color::White);
+            Pixel N(x,y, sf::Color::White);
+            Pixel S(x,y, sf::Color::White);
+            Pixel W(x,y, sf::Color::White);
+            Pixel E(x,y, sf::Color::White);
+
+            sf::Color boundryColor = tmp.c;
+            dsd.push_front(tmp);
+            while(!dsd.empty()&&i!=dsd.end()){
+            tmp=*i;
+            dsd.pop_front();
+                if(tmp.c!=fillColor&&tmp.c!=boundryColor)
+                {
+                    tmp.c=fillColor;
+                    drawPiksel(parent,tmp.c,tmp.x,tmp.y);
+                    N.y-=1;
+                    N.c= getPixel(N.x,N.y,parent);
+                    S.y+=1;
+                    S.c= getPixel(S.x,S.y,parent);
+                    W.x-=1;
+                    W.c= getPixel(W.x,W.y,parent);
+                    E.x+=1;
+                    E.c= getPixel(E.x,E.y,parent);
+                    dsd.push_front(N);
+                    dsd.push_front(S);
+                    dsd.push_front(W);
+                    dsd.push_front(E);
+                    i++;
+                }
+
+            }
 }

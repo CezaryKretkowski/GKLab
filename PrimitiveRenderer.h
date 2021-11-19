@@ -6,7 +6,8 @@
 #define GK_LAB_PRIMITIVERENDERER_H
 #include <SFML/Graphics.hpp>
 #include "Point2D.h"
-#include <List>
+#include <list>
+
 class PrimitiveRenderer{
 private:
 public:
@@ -18,5 +19,8 @@ public:
     void drawSegment(sf::RenderWindow * parent, sf::Color color,std::list<Point2D> Points);
     void drawLineMain(sf::RenderWindow * parent, sf::Color color,Point2D p1,Point2D p2);
     void drawPolygon(sf::RenderWindow * parent, sf::Color color, float size, float x=0, float y=0);
+    sf::Color getPixel(double x,double y,sf::RenderWindow* parent);
+    void fileColor(sf::RenderWindow* parent,double x, double y,sf::Color fileColor);
+
 };
 #endif //GK_LAB_PRIMITIVERENDERER_H

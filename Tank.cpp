@@ -34,7 +34,7 @@ void Tank::draw(sf::RenderWindow *parent) {
 void Tank::moveUp(sf::RenderWindow *parent) {
 
     if(sf::Keyboard::isKeyPressed(this->up)){
-        if(step>50) {
+        if(step>20) {
             float rot = painter.getRotation();
 
             if (rot <= 90 && posY > 0 && posX < parent->getSize().x) {
@@ -76,7 +76,7 @@ void Tank::moveUp(sf::RenderWindow *parent) {
 void Tank::moveDown(sf::RenderWindow *parent) {
 
     if(sf::Keyboard::isKeyPressed(this->down)){
-        if(step>50) {
+        if(step>20) {
             float rot = painter.getRotation();
 
             if (rot <= 90 && posX > 0 && posY < parent->getSize().y) {//posX > 0 && posY < parent->getSize().y
