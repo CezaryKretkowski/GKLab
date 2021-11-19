@@ -6,7 +6,7 @@
 #define GKLAB_DRAWABLEOBJECT_H
 #include <SFML/Graphics.hpp>
 class DrawableObject{
-private:
+protected:
     sf::Texture ts;
     sf::Image img;
     sf::Sprite painter;
@@ -15,6 +15,7 @@ private:
 public:
     void setImg(std::string path);
     virtual void draw(sf::RenderWindow *super);
+    virtual ~DrawableObject();
     void setPosX(double x){posX=x;};
     void setPosY(double y){posY=y;};
     double getPosX(){return posX;}

@@ -123,3 +123,6 @@ sf::Event Engine::getEvent() {
 void Engine::clearKeys() {
     this->KeyBaordList.clear();
 }
+sf::Clock* Engine::getClock() {
+    return &clock;
+}

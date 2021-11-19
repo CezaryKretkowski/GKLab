@@ -86,12 +86,12 @@ void drawLine(Engine *super){
 }
 int main() {
     Engine engine;
-    //engine.overrideSetUpFun(&GameSetUp);
-    //engine.overrideRunFun(&GameRun);
+    engine.overrideSetUpFun(&GameSetUp);
+    engine.overrideRunFun(&GameRun);
     //engine.overrideClearFun(&menuClear);
-   KeyListener ks(sf::Keyboard::A,&primityvRederfun);
-   ks.overrideRelesedFun(&keyRelesed);
-    engine.addKeyListener(ks);
+   //KeyListener ks(sf::Keyboard::A,&primityvRederfun);
+   //ks.overrideRelesedFun(&keyRelesed);
+    //engine.addKeyListener(ks);
     //MouseListener ml;
    // ml.overrideMousePressed(&clicked,LeftMouseButton);
     //ml.overrideMouseMove(&move);

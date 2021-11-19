@@ -50,6 +50,7 @@ public:
     void toDo();
     void setEnd(bool end);
     bool getEnd();
+    sf::Clock* getClock();
     void reload();
     sf::Texture* getSource();
     void getImg();

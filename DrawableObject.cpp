@@ -8,6 +8,9 @@ void DrawableObject::setImg(std::string path) {
     this->painter.setTexture(ts);
 
 }
+void DrawableObject::draw(sf::RenderWindow *super) {
 
+}
+DrawableObject::~DrawableObject() {}
 
 

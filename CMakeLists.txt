@@ -25,5 +25,5 @@ ELSE()
     endif()
 ENDIF()
 add_executable(GKLab main.cpp Engine.h Engine.cpp MainMenu.h MainMenu.cpp MenuFun.cpp MenuFun.h Label.h Point2D.h Point2D.cpp Label.cpp Button.h Button.cpp
-        KeyListener.h KeyListener.cpp PrimitiveRenderer.h PrimitiveRenderer.cpp KeyListener.cpp MouseListener.h MouseListener.cpp LineSegment.h LineSegment.cpp GameView.h Tank.h Tank.cpp GameFun.h GameFun.cpp Missile.h Missile.cpp AnimatedObject.h AnimatedObject.cpp DrawableObject.h DrawableObject.cpp Pixel.h)
+        KeyListener.h KeyListener.cpp PrimitiveRenderer.h PrimitiveRenderer.cpp KeyListener.cpp MouseListener.h MouseListener.cpp LineSegment.h LineSegment.cpp GameView.h Tank.h Tank.cpp GameFun.h GameFun.cpp Missile.h Missile.cpp AnimatedObject.h AnimatedObject.cpp DrawableObject.h DrawableObject.cpp Pixel.h Obstycle.h Obstycle.cpp GameView.cpp Player.h Player.cpp)
 target_link_libraries (GKLab sfml-graphics sfml-window sfml-system)

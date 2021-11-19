@@ -7,6 +7,8 @@
 #include <SFML/Graphics.hpp>
 #include "Missile.h"
 #include <iostream>
+#include "Obstycle.h"
+#include "Point2D.h"
 class Tank{
 private:
     sf::Image skin;
@@ -21,11 +23,13 @@ private:
     sf::Keyboard::Key right;
     sf::Keyboard::Key fire;
     sf::Sprite painter;
+    std::vector<Obstycle>::iterator i;
     int step=0;
     int step1=0;
     Missile ms;
     bool loading=false;
 public:
+    std::vector<Obstycle>* obstycleList;
     sf::Vector2f ofset;
     Tank(float =100.0,float =100.0,int=0);
     void  setPosX(float x){this->posX=x;};
@@ -50,6 +54,8 @@ public:
     void rotRight(sf::RenderWindow *parent);
     void fireFun(sf::RenderWindow *parent);
     Missile* getMissile(){return &ms;};
-    void drawMissile(sf::RenderWindow *parent);
+    void drawMissile(sf::RenderWindow *parent,sf::Clock* cl,Point2D *msille);
+    bool checkCollision(sf::RenderWindow* super,double x,double y);
+    void checkHit(Point2D* p,int n);
 };
 #endif //GKLAB_TANK_H
