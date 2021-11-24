@@ -21,6 +21,7 @@ public:
     void drawPolygon(sf::RenderWindow * parent, sf::Color color, float size, float x=0, float y=0);
     sf::Color getPixel(double x,double y,sf::RenderWindow* parent);
     void fileColor(sf::RenderWindow* parent,double x, double y,sf::Color fileColor);
-
+    void drawCircleAlg(sf::RenderWindow* parent,double x, double y,double r,sf::Color fileColor);
+    void drawElispeAlg(sf::RenderWindow* parent,double x, double y,double r1,double r2,sf::Color fileColor);
 };
 #endif //GK_LAB_PRIMITIVERENDERER_H

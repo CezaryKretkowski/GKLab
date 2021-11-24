@@ -4,6 +4,8 @@
 #include <iostream>
 #include "PrimitiveRenderer.h"
 #include "Pixel.h"
+#include <cmath>
+#define PI 3.14159265
 
 void PrimitiveRenderer::drawCircle(sf::RenderWindow *parent, sf::Color color, float size, float x, float y) {
     sf::CircleShape shape(size);
@@ -50,14 +52,15 @@ void PrimitiveRenderer::drawPolygon(sf::RenderWindow *parent, sf::Color color, f
 
 void PrimitiveRenderer::drawPiksel(sf::RenderWindow *parent, sf::Color color, float x, float y) {
     sf::Image view;
-    view.create(1,1,color);
+    view.create(2.0,2.0,color);
     sf::Texture t1;
-    t1.create(1,1);
+    t1.create(2.0,2.0);
     t1.update(view);
     sf::Sprite sx;
     sx.setTexture(t1);
     sx.setPosition(x,y);
     parent->draw(sx);
+
 }
 
 void PrimitiveRenderer::drawLineMain(sf::RenderWindow *parent, sf::Color color, Point2D point1, Point2D point2) {
@@ -133,43 +136,79 @@ void PrimitiveRenderer::drawSegment(sf::RenderWindow *parent, sf::Color color, s
 }
 sf::Color PrimitiveRenderer::getPixel(double x, double y,sf::RenderWindow* parent) {
     //aa::RenderTexture r;
-
+    parent->display();
     sf::Image img=parent->capture();
     auto color = img.getPixel(x,y);
+    std::cout<<color.toInteger()<<std::endl;
     return color;
 }
 void PrimitiveRenderer::fileColor(sf::RenderWindow *parent,double x, double y,sf::Color fillColor) {
             std::list<Pixel> dsd;
             std::list<Pixel>::iterator i=dsd.begin();
-            Pixel tmp(x,y, sf::Color::White);
-            Pixel N(x,y, sf::Color::White);
-            Pixel S(x,y, sf::Color::White);
-            Pixel W(x,y, sf::Color::White);
-            Pixel E(x,y, sf::Color::White);
+            Pixel tmp(x,y, getPixel(x,y,parent));
+            Pixel N(x,y, getPixel(x,y,parent));
+            Pixel S(x,y, getPixel(x,y,parent));
+            Pixel W(x,y,getPixel(x,y,parent));
+            Pixel E(x,y, getPixel(x,y,parent));
+            sf::Color backColor=getPixel(x,y,parent);
 
-            sf::Color boundryColor = tmp.c;
             dsd.push_front(tmp);
-            while(!dsd.empty()&&i!=dsd.end()){
-            tmp=*i;
+            while(!dsd.empty()){
+            tmp=*dsd.begin();
             dsd.pop_front();
-                if(tmp.c!=fillColor&&tmp.c!=boundryColor)
+                if(tmp.c!=fillColor)
                 {
                     tmp.c=fillColor;
                     drawPiksel(parent,tmp.c,tmp.x,tmp.y);
                     N.y-=1;
+                    std::cout<<"MAgenta int "<<sf::Color::Magenta.toInteger()<<std::endl;
+                    std::cout<<"loop ";
                     N.c= getPixel(N.x,N.y,parent);
                     S.y+=1;
+                    std::cout<<"loop ";
                     S.c= getPixel(S.x,S.y,parent);
                     W.x-=1;
+                    std::cout<<"loop ";
                     W.c= getPixel(W.x,W.y,parent);
                     E.x+=1;
+                    std::cout<<"loop ";
                     E.c= getPixel(E.x,E.y,parent);
+                    if(N.c==backColor||N.c==fillColor)
                     dsd.push_front(N);
+                    if(S.c==backColor||S.c==fillColor)
                     dsd.push_front(S);
+                    if(W.c==backColor||W.c==fillColor)
                     dsd.push_front(W);
+                    if(E.c==backColor||E.c==fillColor)
                     dsd.push_front(E);
-                    i++;
+
                 }
 
+
             }
+}
+void PrimitiveRenderer::drawCircleAlg(sf::RenderWindow *parent, double x, double y,double r, sf::Color fileColor) {
+    double i=0;
+    for(i;i<(2*PI)/4;i+=0.01){
+        double x1,y1;
+        x1=x+r* cos(i);
+        y1=y+r* sin(i);
+        drawPiksel(parent,fileColor,x1,y1);
+        drawPiksel(parent,fileColor,x-r* cos(i),y-r* sin(i));
+        drawPiksel(parent,fileColor,x-r* cos(i),y+r* sin(i));
+        drawPiksel(parent,fileColor,x+r* cos(i),y-r* sin(i));
+    }
+}
+void PrimitiveRenderer::drawElispeAlg(sf::RenderWindow *parent, double x, double y, double r1, double r2,
+                                      sf::Color fileColor) {
+    double i=0;
+    for(i;i<(2*PI)/4;i+=0.01){
+        double x1,y1;
+        x1=x+r1* cos(i);
+        y1=y+r2* sin(i);
+        drawPiksel(parent,fileColor,x1,y1);
+        drawPiksel(parent,fileColor,x-r1* cos(i),y-r2* sin(i));
+        drawPiksel(parent,fileColor,x-r1* cos(i),y+r2* sin(i));
+        drawPiksel(parent,fileColor,x+r1* cos(i),y-r2* sin(i));
+    }
 }

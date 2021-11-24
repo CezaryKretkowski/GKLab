@@ -19,11 +19,21 @@ void Button::setImages(std::string p1, std::string p2, std::string p3) {
 Button::Button() {
 
 }
+bool Button::onClicked(sf::RenderWindow *parent, sf::Event event) {
 
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            if(x>=posX&&x<=(posX+width)&&y>=posY&&y<=(posY+hight)){
+                std::cout<<"na buttonie"<<std::endl;
+                source.update(s3);
+                painer.setTexture(source);
+                parent->draw(painer);
+                return true;
+            }
+    return false;
+}
 void Button::onSelected(sf::RenderWindow * parent,sf::Event event) {
 
-    int x;
-    int y;
+
 
     if(event.type=sf::Event::MouseMoved){
         x=event.mouseMove.x;
@@ -35,6 +45,7 @@ void Button::onSelected(sf::RenderWindow * parent,sf::Event event) {
         source.update(s2);
         painer.setTexture(source);
         parent->draw(painer);
+
 
     }else{
         source.update(s1);

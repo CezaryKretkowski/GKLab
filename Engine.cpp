@@ -15,6 +15,8 @@ void Engine::mainLoop() {
                 frame->close();
 
         }
+        clear(sf::Color::Black);
+
 
         if(MouseListenerON) {
             listener->mouseMove(this->frame,event);

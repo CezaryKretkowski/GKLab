@@ -4,6 +4,7 @@
 #include "PrimitiveRenderer.h"
 #include "LineSegment.h"
 #include "GameFun.h"
+#include "LineShape.h"
 void primityvRederfun(Engine *parent){
     PrimitiveRenderer render;
     //render.drawCircle(parent,sf::Color::Red,50);
@@ -39,18 +40,23 @@ void primityvRederfun(Engine *parent){
     ls.push_front(p2);
     //render.drawLineMain(parent->getFrame(),sf::Color::Magenta,p1,p2);
 
-    p1.setX(160);
+    p1.setX(200);
     p1.setY(150);
     p2.setX(200);
     p2.setY(200);
     ls.push_front(p1);
     ls.push_front(p2);
-
-
+    Point2D p3(100,300);
+    LineShape ln(p1,p2);
+    ln.draw(parent->getFrame());
+    //ln.translate(p3,parent->getFrame());
+    ln.rotate(30,parent->getFrame());
 
    // render.drawLineMain(parent->getFrame(),sf::Color::Magenta,p1,p2);
-    render.drawSegment(parent->getFrame(),sf::Color::Magenta,ls);
-    render.fileColor(parent->getFrame(),300,150,sf::Color::Magenta);
+    //render.drawSegment(parent->getFrame(),sf::Color::Magenta,ls);
+   // render.drawCircleAlg(parent->getFrame(),100,100,30,sf::Color::Magenta);
+    //render.drawElispeAlg(parent->getFrame(),100,100,30,20,sf::Color::Magenta);
+  //  render.fileColor(parent->getFrame(),100,150,sf::Color::Magenta);
    // render.drawPiksel(parent->getFrame(),sf::Color::Magenta,200.0,200.0);
     //render.drawCircle(parent->getFrame(),sf::Color::Red,50,260.0,200.0);
     //render.drawOctagon(parent->getFrame(), sf::Color::Yellow, 50, 400, 200);
@@ -86,12 +92,12 @@ void drawLine(Engine *super){
 }
 int main() {
     Engine engine;
-    engine.overrideSetUpFun(&GameSetUp);
-    engine.overrideRunFun(&GameRun);
-    //engine.overrideClearFun(&menuClear);
-   //KeyListener ks(sf::Keyboard::A,&primityvRederfun);
-   //ks.overrideRelesedFun(&keyRelesed);
-    //engine.addKeyListener(ks);
+    engine.overrideSetUpFun(&menuSetUp);
+    engine.overrideRunFun(&menuRun);
+    engine.overrideClearFun(&menuClear);
+  // KeyListener ks(sf::Keyboard::A,&primityvRederfun);
+  // ks.overrideRelesedFun(&keyRelesed);
+   // engine.addKeyListener(ks);
     //MouseListener ml;
    // ml.overrideMousePressed(&clicked,LeftMouseButton);
     //ml.overrideMouseMove(&move);

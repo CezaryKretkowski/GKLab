@@ -3,6 +3,7 @@
 //
 #include "MenuFun.h"
 #include <iostream>
+#include "GameFun.h"
 void ecapeEnd(Engine *parent){
     parent->setEnd(false);
     parent->getFrame()->close();
@@ -12,6 +13,15 @@ void menuRun(Engine *super) {
     super->clear(super->menu.getBackGround());
     super->getFrame()->draw(super->menu.getLabel()->getText());
     super->menu.newGame.onSelected(super->getFrame(),super->getEvent());
+    if(super->menu.newGame.onClicked(super->getFrame(),super->getEvent())){
+        super->setEnd(true);
+        std::cout<<"Reload startet"<<std::endl;
+        super->overrideSetUpFun(NULL);
+        super->overrideRunFun(NULL);
+        super->overrideSetUpFun(&GameSetUp);
+        super->overrideRunFun(&GameRun);
+        super->reload();
+    }
     super->menu.onlineGame.onSelected(super->getFrame(),super->getEvent());
     super->menu.endButton.onSelected(super->getFrame(),super->getEvent());
 }
