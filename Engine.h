@@ -10,6 +10,7 @@
 #include "KeyListener.h"
 #include "MouseListener.h"
 #include <list>
+#include "DemoView.h"
 //#define Path
 #define  FullScreenMode 1
 #define  WindowMode 0
@@ -57,6 +58,7 @@ public:
     MouseListener*listener;
     void clearKeys();
 
+    DemoView demoGame;
     MainMenu menu;
     GameView game;
 };

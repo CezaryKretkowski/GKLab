@@ -111,6 +111,8 @@ bool Engine::getEnd() {
 }
 void Engine::reload(){
     setEnd(false);
+    if(this->setUp!=NULL)
+        setUp(this);
     mainLoop();
 }
 sf::Texture* Engine::getSource() {

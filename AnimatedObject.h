@@ -7,6 +7,6 @@
 #include <SFML/Graphics.hpp>
 class  AnimatedObject{
 public:
-    virtual  animate(sf::RenderWindow *parent);
+    virtual void  animate(sf::RenderWindow *parent,bool t);
 };
 #endif //GKLAB_ANIMATEDOBJECT_H
