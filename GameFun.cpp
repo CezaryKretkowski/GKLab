@@ -5,6 +5,13 @@
 #include "GameFun.h"
 void GameRun(Engine *super){
     super->clear(sf::Color::Black);
+    super->game.pauseKey();
+    if(super->game.getPasue())
+    {
+        std::cout<<"works"<<std::endl;
+        super->getFrame()->draw(super->game.pauseMenu.getTitle()->getText());
+    }
+    super->game.getLabel()->setString("P1 :"+std::to_string(super->game.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->game.getPlayer2()->getPoints())  );
     super->game.getPlayer1()->getTank()->draw(super->getFrame());
     super->game.getPlayer1()->getTank()->moveUp(super->getFrame());
     super->game.getPlayer1()->getTank()->moveDown(super->getFrame());
@@ -12,8 +19,11 @@ void GameRun(Engine *super){
     super->game.getPlayer1()->getTank()->rotRight(super->getFrame());
     super->game.getPlayer1()->getTank()->fireFun(super->getFrame());
     super->game.getPlayer1()->getTank()->drawMissile(super->getFrame(),super->getClock(),super->game.getPlayer1()->getMissileCords());
+    super->getFrame()->draw(super->game.getLabel()->getText());
 
-    super->game.getPlayer1()->getTank()->checkHit(super->game.getPlayer2()->getMissileCords(),1);
+    if(super->game.getPlayer1()->getTank()->checkHit(super->game.getPlayer2()->getMissileCords(),1)){
+        super->game.getPlayer1()->setPoints(super->game.getPlayer1()->getPoints()-1);
+    }
     super->game.drawObstycles(super->getFrame());
 
 
@@ -24,7 +34,9 @@ void GameRun(Engine *super){
     super->game.getPlayer2()->getTank()->rotRight(super->getFrame());
     super->game.getPlayer2()->getTank()->fireFun(super->getFrame());
     super->game.getPlayer2()->getTank()->drawMissile(super->getFrame(),super->getClock(),super->game.getPlayer2()->getMissileCords());
-    super->game.getPlayer2()->getTank()->checkHit(super->game.getPlayer1()->getMissileCords(),2);
+    if(super->game.getPlayer2()->getTank()->checkHit(super->game.getPlayer1()->getMissileCords(),2)){
+        super->game.getPlayer2()->setPoints(super->game.getPlayer2()->getPoints()-1);
+    }
 
 }
 void GameSetUp(Engine *super){
@@ -43,6 +55,18 @@ void GameSetUp(Engine *super){
     testeing1.setPosX(200);
     testeing1.setImg("Resource/image/Obstycle2.png");
     super->game.addObstycle(testeing1);
+
+    super->game.getLabel()->setColor(sf::Color::Red);
+    super->game.getLabel()->setString("P1 :"+std::to_string(super->game.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->game.getPlayer2()->getPoints()));
+    super->game.getLabel()->setFont("gunplay.ttf");
+    super->game.getLabel()->setSize(25);
+    Point2D p(700.0,20.0);
+    super->game.getLabel()->setPos(p);
+
+    super->game.pauseMenu.getTitle()->setString("Pause");
+    super->game.pauseMenu.getTitle()->setSize(25);
+    super->game.pauseMenu.getTitle()->setFont("gunplay.ttf");
+    super->game.pauseMenu.getTitle()->setPos( Point2D(380,100));
 
 
 

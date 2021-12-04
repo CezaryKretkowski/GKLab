@@ -28,6 +28,7 @@ private:
     int step1=0;
     Missile ms;
     bool loading=false;
+    int hit;
 public:
     std::vector<Obstycle>* obstycleList;
     sf::Vector2f ofset;
@@ -56,6 +57,6 @@ public:
     Missile* getMissile(){return &ms;};
     void drawMissile(sf::RenderWindow *parent,sf::Clock* cl,Point2D *msille);
     bool checkCollision(sf::RenderWindow* super,double x,double y);
-    void checkHit(Point2D* p,int n);
+    bool checkHit(Point2D* p,int n);
 };
 #endif //GKLAB_TANK_H

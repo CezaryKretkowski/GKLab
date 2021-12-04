@@ -291,7 +291,8 @@ bool Tank::checkCollision(sf::RenderWindow *super, double x, double y) {
 
     return detected;
 }
-void Tank::checkHit(Point2D *p,int n) {
+bool Tank::checkHit(Point2D *p,int n) {
+    bool check=false;
     float x0=posX;
     float  x1=posX+skin.getSize().x;
     float  y0=posY;
@@ -299,7 +300,14 @@ void Tank::checkHit(Point2D *p,int n) {
 
 
     if(p->getX()>=x0&& p->getX() <= x1 && p->getY() >= y0 && p->getY() <= y1){
+       hit++;
 
-        std::cout<<"Hitt Playear "<< n <<std::endl;
-    }
+
+    }else
+        hit=0;
+    if(hit==1)
+        check=true;
+
+
+    return check;
 }

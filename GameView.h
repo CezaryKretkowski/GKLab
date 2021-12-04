@@ -9,13 +9,23 @@
 #include "Obstycle.h"
 #include <vector>
 #include "Player.h"
+#include "Label.h"
+#include <list>
+#include "Button.h"
+#include "Pause.h"
 class GameView{
 private:
 
     Player player1;
     Player player2;
     std::vector<Obstycle> obstycle;
+    Label wynik;
+    bool  load;
+    bool pause=false;
 public:
+    Pause pauseMenu;
+    void setLoad(bool load){this->load=load;}
+    Label* getLabel(){return &wynik;};
     void addObstycle(Obstycle o);
     Obstycle getObstycle(int index);
     //Obstycle testeing;
@@ -25,5 +35,9 @@ public:
     int getPiksel(int x,int y);
     std::vector<Obstycle>* getObtycleList();
     void drawObstycles(sf::RenderWindow *parent);
+    void pauseKey();
+    bool getPasue(){return pause;}
+    void saveToFile(Point2D p1Pos,Point2D p2Pos,std::string skin1,std::string skin2,std::list<std::string>obs,
+                    std::list<Point2D>oPos,int Point1,int Point2);
 };
 #endif //GKLAB_GAMEVIEW_H

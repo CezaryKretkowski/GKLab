@@ -122,15 +122,16 @@ int main() {
     //newBitmap.init();
     //KeyListener ks(sf::Keyboard::D,&BitmapTest);
     //ks.overrideRelesedFun(&keyRelesed);
-    KeyListener end(sf::Keyboard::Escape,&ecapeEndDemo);
-    KeyListener back(sf::Keyboard::Space,&keyBack);
-    engine.addKeyListener(end);
-    engine.addKeyListener(back);
+  //  KeyListener end(sf::Keyboard::Escape,&ecapeEndDemo);
+   // KeyListener back(sf::Keyboard::Space,&keyBack);
+    //engine.addKeyListener(end);
+    //engine.addKeyListener(back);
 
-   engine.overrideSetUpFun(&setUP);
-    engine.overrideRunFun(&Run);
-
-    //engine.overrideClearFun(&menuClear);
+   //engine.overrideSetUpFun(&setUP);
+    //engine.overrideRunFun(&Run);
+     engine.overrideSetUpFun(&menuSetUp);
+     engine.overrideRunFun(&menuRun);
+   engine.overrideClearFun(&menuClear);
   // KeyListener ks(sf::Keyboard::A,&primityvRederfun);
    //ks.overrideRelesedFun(&keyRelesed);
     //engine.addKeyListener(ks);

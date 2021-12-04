@@ -16,6 +16,7 @@ private:
 
 public:
     Button newGame;
+    Button loadGame;
     Button onlineGame;
     Button endButton;
     void setBackground(std::string path);

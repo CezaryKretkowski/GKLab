@@ -22,6 +22,8 @@ void menuRun(Engine *super) {
         super->overrideRunFun(&GameRun);
         super->reload();
     }
+    super->menu.loadGame.onSelected(super->getFrame(),super->getEvent());
+
     super->menu.onlineGame.onSelected(super->getFrame(),super->getEvent());
     super->menu.endButton.onSelected(super->getFrame(),super->getEvent());
 }
@@ -40,21 +42,26 @@ void menuSetUp(Engine *super) {
 
 
     super->menu.newGame.setPosX(250.0);
-    super->menu.newGame.setPosY(150.0);
+    super->menu.newGame.setPosY(130.0);
     super->menu.newGame.setWidth(300);
     super->menu.newGame.setHight(50);
     super->menu.newGame.setImages("Resource/image/base.png","Resource/image/selected.png","Resource/image/clicked.png");
 
+    super->menu.loadGame.setPosX(250.0);
+    super->menu.loadGame.setPosY(230.0);
+    super->menu.loadGame.setWidth(300);
+    super->menu.loadGame.setHight(50);
+    super->menu.loadGame.setImages("Resource/image/base4.png","Resource/image/selected4.png","Resource/image/clicked.png");
 
     super->menu.onlineGame.setPosX(250.0);
-    super->menu.onlineGame.setPosY(250.0);
+    super->menu.onlineGame.setPosY(330.0);
     super->menu.onlineGame.setWidth(300);
     super->menu.onlineGame.setHight(50);
     super->menu.onlineGame.setImages("Resource/image/base1.png","Resource/image/selected1.png","Resource/image/clicked.png");
 
 
     super->menu.endButton.setPosX(250.0);
-    super->menu.endButton.setPosY(350.0);
+    super->menu.endButton.setPosY(430.0);
     super->menu.endButton.setWidth(300);
     super->menu.endButton.setHight(50);
     super->menu.endButton.setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");

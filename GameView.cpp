@@ -20,3 +20,12 @@ void GameView::drawObstycles(sf::RenderWindow *parent) {
         i->draw(parent);
     }
 }
+void GameView::pauseKey(){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
+        std::cout<<"works"<<std::endl;
+
+            pause=true;
+
+    }
+
+}
