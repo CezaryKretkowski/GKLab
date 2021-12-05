@@ -22,6 +22,7 @@ private:
     Label wynik;
     bool  load;
     bool pause=false;
+    bool keyPressed=false;
 public:
     Pause pauseMenu;
     void setLoad(bool load){this->load=load;}
