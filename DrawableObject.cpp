@@ -3,6 +3,7 @@
 //
 #include "DrawableObject.h"
 void DrawableObject::setImg(std::string path) {
+    this->imgName=path;
     this->img.loadFromFile(path);
     this->ts.loadFromImage(img);
     this->painter.setTexture(ts);

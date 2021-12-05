@@ -20,14 +20,15 @@ void Player::setUpTank(std::vector<Obstycle>* obstycle,std::string skin,std::str
     tank.obstycleList=obstycle;
 
 }
-void Player::setUpTank(Point2D offset,Point2D pos,std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
+void Player::setUpTank(Point2D pos,std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
         ,sf::Keyboard::Key right,sf::Keyboard::Key fire) {
     tank.setSkin(skin);
     tank.setPosX(pos.getX());
     tank.setPosY(pos.getY());
     tank.setAngel(0.0);
-    tank.ofset.x=offset.getX();
-    tank.ofset.y=offset.getY();
+
+    tank.ofset.x=tank.getSize().x/2;
+    tank.ofset.y=tank.getSize().y/2;
     tank.setUpKey(up);
     tank.setDownKey(down);
     tank.setLeftKey(left);

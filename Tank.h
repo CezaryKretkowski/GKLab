@@ -13,7 +13,7 @@ class Tank{
 private:
     sf::Image skin;
     sf::Texture texture;
-
+    std::string skinName;
     float posX;
     float posY;
     int angle;
@@ -30,6 +30,10 @@ private:
     bool loading=false;
     int hit;
 public:
+    sf::Vector2u getSize(){
+        return  skin.getSize();
+    }
+    std::string getSkin(){return skinName;}
     std::vector<Obstycle>* obstycleList;
     sf::Vector2f ofset;
     Tank(float =100.0,float =100.0,int=0);
@@ -37,6 +41,7 @@ public:
     void  setPosY(float y){this->posY=y;};
     void setAngel(int angel){angle=angle;};
     float getPosX(){return posX;}
+    float getPosY(){return posY;}
     sf::Keyboard::Key getUpKey(){return up;}
     sf::Keyboard::Key getDownKey(){return down;}
     sf::Keyboard::Key getRightKey(){return right;}

@@ -12,7 +12,9 @@ protected:
     sf::Sprite painter;
     double posX;
     double posY;
+    std::string imgName;
 public:
+    std::string getImageName(){return imgName;}
     void setImg(std::string path);
     virtual void draw(sf::RenderWindow *super);
     virtual ~DrawableObject();

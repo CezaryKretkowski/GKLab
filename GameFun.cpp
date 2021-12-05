@@ -15,6 +15,16 @@ void GameRun(Engine *super){
         super->game.pauseMenu.GetSaveAndExit()->onSelected(super->getFrame(),super->getEvent());
 
         if(super->game.pauseMenu.GetSaveAndExit()->onClicked(super->getFrame(),super->getEvent())){
+            super->game.saveToFile(
+                    Point2D(super->game.getPlayer1()->getTank()->getPosX(),super->game.getPlayer1()->getTank()->getPosY()),
+                    Point2D(super->game.getPlayer2()->getTank()->getPosX(),super->game.getPlayer2()->getTank()->getPosY()),
+                    super->game.getPlayer1()->getTank()->getSkin(),
+                    super->game.getPlayer2()->getTank()->getSkin(),
+                    super->game.getObtycleList(),
+                    super->game.getPlayer1()->getPoints(),
+                    super->game.getPlayer2()->getPoints()
+                    );
+            super->game.setPasue(false);
             super->setEnd(true);
             std::cout<<"Reload startet"<<std::endl;
             super->overrideSetUpFun(NULL);
@@ -24,7 +34,9 @@ void GameRun(Engine *super){
             super->reload();
         }
         if(super->game.pauseMenu.GetExit()->onClicked(super->getFrame(),super->getEvent())){
+            super->game.setPasue(false);
             super->setEnd(true);
+
             std::cout<<"Reload startet"<<std::endl;
             super->overrideSetUpFun(NULL);
             super->overrideRunFun(NULL);
@@ -65,45 +77,53 @@ void GameRun(Engine *super){
 
 }
 void GameSetUp(Engine *super){
+    if(super->game.getLoad())
+        super->game.loadFromFile();
+    else {
+        super->game.getPlayer1()->setUpTank(super->game.getObtycleList(), "Resource/image/Tank1.png",
+                                            "Resource/image/Missile.png", sf::Keyboard::W,
+                                            sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::A, sf::Keyboard::Space);
+        super->game.getPlayer2()->setUpTank(super->game.getObtycleList(), "Resource/image/Tank2.png",
+                                            "Resource/image/Missile.png", sf::Keyboard::Up,
+                                            sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left,
+                                            sf::Keyboard::P);
+        Obstycle testeing;
+        testeing.setPosY(400);
+        testeing.setPosX(300);
+        testeing.setImg("Resource/image/Obstycle1.png");
+        super->game.addObstycle(testeing);
+        Obstycle testeing1;
+        testeing1.setPosY(100);
+        testeing1.setPosX(200);
+        testeing1.setImg("Resource/image/Obstycle2.png");
+        super->game.addObstycle(testeing1);
+    }
+        super->game.getLabel()->setColor(sf::Color::Red);
+        super->game.getLabel()->setString("P1 :" + std::to_string(super->game.getPlayer1()->getPoints()) + "/P2 :" +
+                                          std::to_string(super->game.getPlayer2()->getPoints()));
+        super->game.getLabel()->setFont("gunplay.ttf");
+        super->game.getLabel()->setSize(25);
+        Point2D p(600.0, 20.0);
+        super->game.getLabel()->setPos(p);
 
-    super->game.getPlayer1()->setUpTank(super->game.getObtycleList(),"Resource/image/Tank1.png","Resource/image/Missile.png",sf::Keyboard::W,
-                                        sf::Keyboard::S,sf::Keyboard::D,sf::Keyboard::A,sf::Keyboard::Space);
-    super->game.getPlayer2()->setUpTank(super->game.getObtycleList(),"Resource/image/Tank2.png","Resource/image/Missile.png",sf::Keyboard::Up,
-                                        sf::Keyboard::Down,sf::Keyboard::Right,sf::Keyboard::Left,sf::Keyboard::P);
-    Obstycle testeing;
-    testeing.setPosY(400);
-    testeing.setPosX(300);
-    testeing.setImg("Resource/image/Obstycle1.png");
-    super->game.addObstycle(testeing);
-    Obstycle testeing1;
-    testeing1.setPosY(100);
-    testeing1.setPosX(200);
-    testeing1.setImg("Resource/image/Obstycle2.png");
-    super->game.addObstycle(testeing1);
-
-    super->game.getLabel()->setColor(sf::Color::Red);
-    super->game.getLabel()->setString("P1 :"+std::to_string(super->game.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->game.getPlayer2()->getPoints()));
-    super->game.getLabel()->setFont("gunplay.ttf");
-    super->game.getLabel()->setSize(25);
-    Point2D p(600.0,20.0);
-    super->game.getLabel()->setPos(p);
-
-    super->game.pauseMenu.getTitle()->setString("Pause");
-    super->game.pauseMenu.getTitle()->setSize(25);
-    super->game.pauseMenu.getTitle()->setFont("gunplay.ttf");
-    super->game.pauseMenu.getTitle()->setPos( Point2D(380,100));
-    super->game.pauseMenu.GetExit()->setPosX(250.0);
-    super->game.pauseMenu.GetExit()->setPosY(430.0);
-    super->game.pauseMenu.GetExit()->setWidth(300);
-    super->game.pauseMenu.GetExit()->setHight(50);
-    super->game.pauseMenu.GetExit()->setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");
+        super->game.pauseMenu.getTitle()->setString("Pause");
+        super->game.pauseMenu.getTitle()->setSize(25);
+        super->game.pauseMenu.getTitle()->setFont("gunplay.ttf");
+        super->game.pauseMenu.getTitle()->setPos(Point2D(380, 100));
+        super->game.pauseMenu.GetExit()->setPosX(250.0);
+        super->game.pauseMenu.GetExit()->setPosY(430.0);
+        super->game.pauseMenu.GetExit()->setWidth(300);
+        super->game.pauseMenu.GetExit()->setHight(50);
+        super->game.pauseMenu.GetExit()->setImages("Resource/image/base2.png", "Resource/image/selected2.png",
+                                                   "Resource/image/clicked.png");
 
 
-    super->game.pauseMenu.GetSaveAndExit()->setPosX(250.0);
-    super->game.pauseMenu.GetSaveAndExit()->setPosY(330.0);
-    super->game.pauseMenu.GetSaveAndExit()->setWidth(300);
-    super->game.pauseMenu.GetSaveAndExit()->setHight(50);
-    super->game.pauseMenu.GetSaveAndExit()->setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");
+        super->game.pauseMenu.GetSaveAndExit()->setPosX(250.0);
+        super->game.pauseMenu.GetSaveAndExit()->setPosY(330.0);
+        super->game.pauseMenu.GetSaveAndExit()->setWidth(300);
+        super->game.pauseMenu.GetSaveAndExit()->setHight(50);
+        super->game.pauseMenu.GetSaveAndExit()->setImages("Resource/image/base2.png", "Resource/image/selected2.png",
+                                                          "Resource/image/clicked.png");
 
 
 

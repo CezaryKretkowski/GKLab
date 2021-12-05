@@ -21,6 +21,7 @@ Tank::Tank(float posX, float posY, int angel) {
 }
 
 void Tank::setSkin(std::string path) {
+    this->skinName=path;
     this->skin.loadFromFile(path);
     this->texture.loadFromImage(skin);
     this->painter.setTexture(texture);
@@ -174,7 +175,7 @@ void Tank::rotRight(sf::RenderWindow *parent) {
 }
 
 void Tank::fireFun(sf::RenderWindow *parent) {
-    if (sf::Keyboard::isKeyPressed(this->fire) && (loading != true)) {
+   if (sf::Keyboard::isKeyPressed(this->fire) && (loading != true)) {
         loading = true;
         ms.setPosX(posX);
         ms.setPosY(posY);

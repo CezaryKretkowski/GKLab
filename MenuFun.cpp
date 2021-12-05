@@ -23,7 +23,16 @@ void menuRun(Engine *super) {
         super->reload();
     }
     super->menu.loadGame.onSelected(super->getFrame(),super->getEvent());
-
+    if(super->menu.loadGame.onClicked(super->getFrame(),super->getEvent())){
+        super->setEnd(true);
+        std::cout<<"Reload startet"<<std::endl;
+        super->overrideSetUpFun(NULL);
+        super->overrideRunFun(NULL);
+        super->overrideSetUpFun(&GameSetUp);
+        super->overrideRunFun(&GameRun);
+        super->game.setLoad(true);
+        super->reload();
+    }
     super->menu.onlineGame.onSelected(super->getFrame(),super->getEvent());
     super->menu.endButton.onSelected(super->getFrame(),super->getEvent());
 }

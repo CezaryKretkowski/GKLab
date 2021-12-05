@@ -18,7 +18,7 @@ public:
     Point2D* getMissileCords(){return &missileCoords;}
     void  setUpTank(std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
     ,sf::Keyboard::Key right,sf::Keyboard::Key fire);
-    void  setUpTank(Point2D offset,Point2D pos,std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
+    void  setUpTank(Point2D pos,std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
             ,sf::Keyboard::Key right,sf::Keyboard::Key fire);
 
 };

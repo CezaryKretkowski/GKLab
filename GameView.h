@@ -24,8 +24,10 @@ private:
     bool pause=false;
     bool keyPressed=false;
 public:
+
     Pause pauseMenu;
     void setLoad(bool load){this->load=load;}
+    bool getLoad(){return load;}
     Label* getLabel(){return &wynik;};
     void addObstycle(Obstycle o);
     Obstycle getObstycle(int index);
@@ -38,7 +40,8 @@ public:
     void drawObstycles(sf::RenderWindow *parent);
     void pauseKey();
     bool getPasue(){return pause;}
-    void saveToFile(Point2D p1Pos,Point2D p2Pos,std::string skin1,std::string skin2,std::list<std::string>obs,
-                    std::list<Point2D>oPos,int Point1,int Point2);
+    void setPasue(bool pause){this->pause=pause;}
+    void saveToFile(Point2D p1Pos,Point2D p2Pos,std::string skin1,std::string skin2,std::vector<Obstycle>* obs,int Point1,int Point2);
+    void loadFromFile();
 };
 #endif //GKLAB_GAMEVIEW_H
