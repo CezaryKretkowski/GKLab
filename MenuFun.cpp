@@ -38,7 +38,7 @@ void menuRun(Engine *super) {
 }
 
 void menuSetUp(Engine *super) {
-    KeyListener end(sf::Keyboard::Escape,&ecapeEnd);
+    KeyListener end(sf::Keyboard::G,&ecapeEnd);
     super->addKeyListener(end);
     super->menu.setBackground("Menu2.jpg");
     super->getSource()->loadFromImage(super->menu.getBackGround());

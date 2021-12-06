@@ -131,7 +131,7 @@ int main() {
     //engine.overrideRunFun(&Run);
      engine.overrideSetUpFun(&menuSetUp);
      engine.overrideRunFun(&menuRun);
-   engine.overrideClearFun(&menuClear);
+     engine.overrideClearFun(&menuClear);
   // KeyListener ks(sf::Keyboard::A,&primityvRederfun);
    //ks.overrideRelesedFun(&keyRelesed);
     //engine.addKeyListener(ks);

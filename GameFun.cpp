@@ -77,13 +77,14 @@ void GameRun(Engine *super){
 
 }
 void GameSetUp(Engine *super){
-    if(super->game.getLoad())
+    if(super->game.getLoad()){
         super->game.loadFromFile();
+       super->game.setLoad(false);}
     else {
-        super->game.getPlayer1()->setUpTank(super->game.getObtycleList(), "Resource/image/Tank1.png",
+        super->game.getPlayer1()->setUpTank(super->game.getObtycleList(), "Resource/image/Typical.png",
                                             "Resource/image/Missile.png", sf::Keyboard::W,
                                             sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::A, sf::Keyboard::Space);
-        super->game.getPlayer2()->setUpTank(super->game.getObtycleList(), "Resource/image/Tank2.png",
+        super->game.getPlayer2()->setUpTank(super->game.getObtycleList(), "Resource/image/TeDek.png",
                                             "Resource/image/Missile.png", sf::Keyboard::Up,
                                             sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left,
                                             sf::Keyboard::P);
@@ -129,6 +130,5 @@ void GameSetUp(Engine *super){
 
 }
 void GameClear(Engine *super){
-
 
 }
