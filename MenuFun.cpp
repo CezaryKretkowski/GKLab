@@ -15,6 +15,7 @@ void menuRun(Engine *super) {
     super->menu.newGame.onSelected(super->getFrame(),super->getEvent());
     if(super->menu.newGame.onClicked(super->getFrame(),super->getEvent())){
         super->setEnd(true);
+        super->game.setLoad(false);
         std::cout<<"Reload startet"<<std::endl;
         super->overrideSetUpFun(NULL);
         super->overrideRunFun(NULL);
