@@ -11,6 +11,7 @@
 #include "MouseListener.h"
 #include <list>
 #include "DemoView.h"
+#include "OnlineGameView.h"
 //#define Path
 #define  FullScreenMode 1
 #define  WindowMode 0
@@ -61,5 +62,7 @@ public:
     DemoView demoGame;
     MainMenu menu;
     GameView game;
+    OnlineGameView onlineGame;
+
 };
 #endif //GKLAB_ENGINE_H

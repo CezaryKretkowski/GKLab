@@ -179,7 +179,7 @@ void Tank::fireFun(sf::RenderWindow *parent) {
         loading = true;
         ms.setPosX(posX);
         ms.setPosY(posY);
-
+        //sound.play();
         float rot = painter.getRotation();
         ms.setRot(rot);
     }
@@ -311,4 +311,22 @@ bool Tank::checkHit(Point2D *p,int n) {
 
 
     return check;
+}
+void Tank::drawFire(sf::RenderWindow *parent, sf::Clock *cl) {
+    int i=0;
+    if (loading && i < 20) {
+
+
+
+    }
+}
+void Tank::addFireImg(std::string path) {
+    sf::Image img;
+    img.loadFromFile(path);
+    fiereImg.push_front(img);
+}
+void Tank::loadExsploutionSound(std::string path){
+   // sf::SoundBuffer buffer;
+   // buffer.loadFromFile(path);
+   // sound.setBuffer(buffer);
 }

@@ -5,10 +5,14 @@
 #ifndef GKLAB_TANK_H
 #define GKLAB_TANK_H
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+//#include <SFML/Sound.hpp>
 #include "Missile.h"
 #include <iostream>
 #include "Obstycle.h"
 #include "Point2D.h"
+#include <list>
+
 class Tank{
 private:
     sf::Image skin;
@@ -29,6 +33,8 @@ private:
     Missile ms;
     bool loading=false;
     int hit;
+    std::list<sf::Image> fiereImg;
+
 public:
     sf::Vector2u getSize(){
         return  skin.getSize();
@@ -63,5 +69,8 @@ public:
     void drawMissile(sf::RenderWindow *parent,sf::Clock* cl,Point2D *msille);
     bool checkCollision(sf::RenderWindow* super,double x,double y);
     bool checkHit(Point2D* p,int n);
+    void drawFire(sf::RenderWindow *parent,sf::Clock* cl);
+    void addFireImg(std::string path);
+    void loadExsploutionSound(std::string path);
 };
 #endif //GKLAB_TANK_H

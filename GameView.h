@@ -13,6 +13,8 @@
 #include <list>
 #include "Button.h"
 #include "Pause.h"
+#include "BitmapHandler.h"
+#include "EndGame.h"
 class GameView{
 private:
 
@@ -24,8 +26,9 @@ private:
     bool pause=false;
     bool keyPressed=false;
 public:
-
+    BitmapHandler background;
     Pause pauseMenu;
+    EndGame endGame;
     void setLoad(bool load){this->load=load;}
     bool getLoad(){return load;}
     Label* getLabel(){return &wynik;};

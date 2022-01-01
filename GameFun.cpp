@@ -4,8 +4,10 @@
 #include <iostream>
 #include "GameFun.h"
 #include "MenuFun.h"
+void randomObstycel(Engine *super);
 void GameRun(Engine *super){
     super->clear(sf::Color::Black);
+    super->game.background.draw(super->getFrame());
     super->game.pauseKey();
     if(super->game.getPasue())
     {
@@ -46,7 +48,36 @@ void GameRun(Engine *super){
         }
 
 
-    }else{
+    }else
+    if((super->game.getPlayer1()->getPoints()==0)||(super->game.getPlayer2()->getPoints()==0)){
+        if(super->game.getPlayer1()->getPoints()==0){
+            super->game.endGame.getTitle()->setString("End Game Player 2 Win");
+            std::cout<<"Koniec gry Palyr 2 Win"<<std::endl;}
+        else{
+            super->game.endGame.getTitle()->setString("End Game Player 1 Win");
+            std::cout<<"Koniec gry Palyr 1 Win"<<std::endl;
+        }
+        super->getFrame()->draw(super->game.endGame.getTitle()->getText());
+        super->game.endGame.GetExit()->onSelected(super->getFrame(),super->getEvent());
+        if(super->game.endGame.GetExit()->onClicked(super->getFrame(),super->getEvent())){
+            super->game.setPasue(false);
+            super->setEnd(true);
+            super->game.getPlayer1()->setPoints(10);
+            super->game.getPlayer2()->setPoints(10);
+            std::cout<<"Reload startet"<<std::endl;
+            super->overrideSetUpFun(NULL);
+            super->overrideRunFun(NULL);
+            super->overrideSetUpFun(&menuSetUp);
+            super->overrideRunFun(&menuRun);
+            super->reload();
+        }
+
+
+    }
+    else
+
+
+    {
     super->game.getLabel()->setString("P1 :"+std::to_string(super->game.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->game.getPlayer2()->getPoints())  );
     super->game.getPlayer1()->getTank()->draw(super->getFrame());
     super->game.getPlayer1()->getTank()->moveUp(super->getFrame());
@@ -75,6 +106,7 @@ void GameRun(Engine *super){
     }
     }
 
+
 }
 void GameSetUp(Engine *super){
     if(super->game.getLoad()){
@@ -84,21 +116,16 @@ void GameSetUp(Engine *super){
         super->game.getPlayer1()->setUpTank(super->game.getObtycleList(), "Resource/image/Typical.png",
                                             "Resource/image/Missile.png", sf::Keyboard::W,
                                             sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::A, sf::Keyboard::Space);
+        super->game.getPlayer1()->getTank()->setPosX(500);
+        super->game.getPlayer1()->getTank()->setPosY(500);
+
         super->game.getPlayer2()->setUpTank(super->game.getObtycleList(), "Resource/image/TeDek.png",
                                             "Resource/image/Missile.png", sf::Keyboard::Up,
                                             sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left,
                                             sf::Keyboard::P);
-        Obstycle testeing;
-        testeing.setPosY(400);
-        testeing.setPosX(300);
-        testeing.setImg("Resource/image/Obstycle1.png");
-        super->game.addObstycle(testeing);
-        Obstycle testeing1;
-        testeing1.setPosY(100);
-        testeing1.setPosX(200);
-        testeing1.setImg("Resource/image/Obstycle2.png");
-        super->game.addObstycle(testeing1);
+        randomObstycel(super);
     }
+        super->game.background.loadFromFille("Resource/image/map5.jpg");
         super->game.getLabel()->setColor(sf::Color::Red);
         super->game.getLabel()->setString("P1 :" + std::to_string(super->game.getPlayer1()->getPoints()) + "/P2 :" +
                                           std::to_string(super->game.getPlayer2()->getPoints()));
@@ -115,7 +142,7 @@ void GameSetUp(Engine *super){
         super->game.pauseMenu.GetExit()->setPosY(430.0);
         super->game.pauseMenu.GetExit()->setWidth(300);
         super->game.pauseMenu.GetExit()->setHight(50);
-        super->game.pauseMenu.GetExit()->setImages("Resource/image/base2.png", "Resource/image/selected2.png",
+        super->game.pauseMenu.GetExit()->setImages("Resource/image/base5.png", "Resource/image/selected5.png",
                                                    "Resource/image/clicked.png");
 
 
@@ -123,12 +150,53 @@ void GameSetUp(Engine *super){
         super->game.pauseMenu.GetSaveAndExit()->setPosY(330.0);
         super->game.pauseMenu.GetSaveAndExit()->setWidth(300);
         super->game.pauseMenu.GetSaveAndExit()->setHight(50);
-        super->game.pauseMenu.GetSaveAndExit()->setImages("Resource/image/base2.png", "Resource/image/selected2.png",
+        super->game.pauseMenu.GetSaveAndExit()->setImages("Resource/image/base6.png", "Resource/image/selected6.png",
                                                           "Resource/image/clicked.png");
 
+    super->game.endGame.GetExit()->setPosX(250.0);
+    super->game.endGame.GetExit()->setPosY(430.0);
+    super->game.endGame.GetExit()->setWidth(300);
+    super->game.endGame.GetExit()->setHight(50);
+        super->game.endGame.GetExit()->setImages("Resource/image/base5.png", "Resource/image/selected5.png",
+                                                   "Resource/image/clicked.png");
 
+        super->game.endGame.getTitle()->setSize(25);
+        super->game.endGame.getTitle()->setFont("gunplay.ttf");
+        super->game.endGame.getTitle()->setPos(Point2D(280, 100));
 
 }
 void GameClear(Engine *super){
+
+}
+void randomObstycel(Engine *super){
+    Obstycle testeing;
+    testeing.setPosY(400);
+    testeing.setPosX(300);
+    testeing.setImg("Resource/image/skaly/obj1.png");
+    super->game.addObstycle(testeing);
+    Obstycle testeing1;
+    testeing1.setPosY(100);
+    testeing1.setPosX(200);
+    testeing1.setImg("Resource/image/skaly/obj2.png");
+    super->game.addObstycle(testeing1);
+
+    Obstycle testeing2;
+    testeing2.setPosY(70);
+    testeing2.setPosX(543);
+    testeing2.setImg("Resource/image/skaly/obj3.png");
+    super->game.addObstycle(testeing2);
+
+    Obstycle testeing3;
+    testeing3.setPosY(500);
+    testeing3.setPosX(321);
+    testeing3.setImg("Resource/image/skaly/obj4.png");
+    super->game.addObstycle(testeing3);
+
+
+    Obstycle testeing4;
+    testeing4.setPosY(200);
+    testeing4.setPosX(450);
+    testeing4.setImg("Resource/image/skaly/obj5.png");
+    super->game.addObstycle(testeing4);
 
 }

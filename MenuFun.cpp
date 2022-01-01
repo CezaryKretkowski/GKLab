@@ -4,6 +4,7 @@
 #include "MenuFun.h"
 #include <iostream>
 #include "GameFun.h"
+#include "OnlineGameViewFun.h"
 void ecapeEnd(Engine *parent){
     parent->setEnd(false);
     parent->getFrame()->close();
@@ -35,7 +36,20 @@ void menuRun(Engine *super) {
         super->reload();
     }
     super->menu.onlineGame.onSelected(super->getFrame(),super->getEvent());
+    if(super->menu.onlineGame.onClicked(super->getFrame(),super->getEvent())){
+        super->setEnd(true);
+        super->overrideSetUpFun(NULL);
+        super->overrideRunFun(NULL);
+        super->overrideSetUpFun(&onlineGameSetUP);
+        super->overrideRunFun(&onlineGameRun);
+        super->reload();
+
+    }
     super->menu.endButton.onSelected(super->getFrame(),super->getEvent());
+    if(super->menu.endButton.onClicked(super->getFrame(),super->getEvent())){
+        super->setEnd(true);
+        super->getFrame()->close();
+    }
 }
 
 void menuSetUp(Engine *super) {
