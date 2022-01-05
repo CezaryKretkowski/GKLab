@@ -21,6 +21,15 @@ bool ClientServer::SendPos(float tankPosX, float tankPosY, float bulletPosX, flo
    // std::cout<<"Wiadomość zostal wysłana poporawnie na port :"<<sendPort<<std::endl;
     return check;
 }
+bool ClientServer::SendPos(float tankPosX,float tankPosY,float rotTank,float bulletPosX,float bulletPosY,float rotMissile,float fire) {
+    bool check=true;
+
+    float data[]={tankPosX,tankPosY,rotTank,bulletPosX,bulletPosY,rotMissile,fire};
+    if(socket.send(data,sizeof data,recipient,port)!=sf::Socket::Done)
+        check=false;
+    // std::cout<<"Wiadomość zostal wysłana poporawnie na port :"<<sendPort<<std::endl;
+    return check;
+}
 bool ClientServer::Receive(float data[]) {
     bool check=true;
     std::size_t received;

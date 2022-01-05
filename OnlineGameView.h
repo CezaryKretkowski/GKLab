@@ -27,6 +27,7 @@ public :
     ConectingScreen scren;
     BitmapHandler background;
     Player* getPlayer1(){return &player1;};
+    Player* getPlayer2(){return &player2;};
     std::vector<Obstycle>* getObtycleList();
     void drawObstycles(sf::RenderWindow *parent);
     Label* getLabel(){return &wynik;};

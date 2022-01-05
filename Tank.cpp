@@ -39,7 +39,7 @@ void Tank::draw(sf::RenderWindow *parent) {
 
 void Tank::moveUp(sf::RenderWindow *parent) {
     sf::Color c = skin.getPixel(0, 0);
-    if (sf::Keyboard::isKeyPressed(this->up)) {
+    if (sf::Keyboard::isKeyPressed(this->up)&&parent->hasFocus()) {
         if (step > 20) {
             float rot = painter.getRotation();
 
@@ -91,7 +91,7 @@ void Tank::moveUp(sf::RenderWindow *parent) {
 
 void Tank::moveDown(sf::RenderWindow *parent) {
 
-    if (sf::Keyboard::isKeyPressed(this->down)) {
+    if (sf::Keyboard::isKeyPressed(this->down)&&parent->hasFocus()) {
         if (step > 20) {
             float rot = painter.getRotation();
 
@@ -146,7 +146,7 @@ void Tank::moveDown(sf::RenderWindow *parent) {
 
 void Tank::rotLeft(sf::RenderWindow *parent) {
     int i = 0;
-    if (sf::Keyboard::isKeyPressed(this->left)) {
+    if (sf::Keyboard::isKeyPressed(this->left)&&parent->hasFocus()) {
         angle++;
         if (angle == 50) {
             i++;
@@ -161,7 +161,7 @@ void Tank::rotLeft(sf::RenderWindow *parent) {
 
 void Tank::rotRight(sf::RenderWindow *parent) {
     int i = 0;
-    if (sf::Keyboard::isKeyPressed(this->right)) {
+    if (sf::Keyboard::isKeyPressed(this->right)&&parent->hasFocus()) {
         angle++;
         if (angle == 50) {
             i--;
@@ -175,7 +175,19 @@ void Tank::rotRight(sf::RenderWindow *parent) {
 }
 
 void Tank::fireFun(sf::RenderWindow *parent) {
-   if (sf::Keyboard::isKeyPressed(this->fire) && (loading != true)) {
+   if (sf::Keyboard::isKeyPressed(this->fire) && (loading != true)&&parent->hasFocus()) {
+        loading = true;
+        ms.setPosX(posX);
+        ms.setPosY(posY);
+        //sound.play();
+        float rot = painter.getRotation();
+        ms.setRot(rot);
+    }
+
+
+}
+void Tank::fireFun(sf::RenderWindow *parent,int condytion) {
+    if (condytion==1 && (loading != true)) {
         loading = true;
         ms.setPosX(posX);
         ms.setPosY(posY);
@@ -308,6 +320,28 @@ bool Tank::checkHit(Point2D *p,int n) {
         hit=0;
     if(hit==1)
         check=true;
+
+
+    return check;
+}
+bool Tank::checkHit(Point2D *p,float load) {
+    bool check=false;
+    float x0=posX;
+    float  x1=posX+skin.getSize().x;
+    float  y0=posY;
+    float  y1=posY+skin.getSize().x;
+
+
+    if(p->getX()>=x0&& p->getX() <= x1 && p->getY() >= y0 && p->getY() <= y1){
+        hit++;
+
+
+    }else
+        hit=0;
+
+    if(hit<1 && load > 0) {
+    hit=0;
+    check=true;}
 
 
     return check;

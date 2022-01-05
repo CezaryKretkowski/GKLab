@@ -39,15 +39,18 @@ public:
     sf::Vector2u getSize(){
         return  skin.getSize();
     }
+    bool getLoad(){return loading;}
     std::string getSkin(){return skinName;}
     std::vector<Obstycle>* obstycleList;
     sf::Vector2f ofset;
     Tank(float =100.0,float =100.0,int=0);
     void  setPosX(float x){this->posX=x;};
     void  setPosY(float y){this->posY=y;};
-    void setAngel(int angel){angle=angle;};
+    void setAngel(int angel){angle=angle;
+    painter.setRotation(angel);};
     float getPosX(){return posX;}
     float getPosY(){return posY;}
+    float getAngle(){return painter.getRotation();}
     sf::Keyboard::Key getUpKey(){return up;}
     sf::Keyboard::Key getDownKey(){return down;}
     sf::Keyboard::Key getRightKey(){return right;}
@@ -65,6 +68,7 @@ public:
     void rotLeft(sf::RenderWindow *parent);
     void rotRight(sf::RenderWindow *parent);
     void fireFun(sf::RenderWindow *parent);
+    void fireFun(sf::RenderWindow *parent,int condytion);
     Missile* getMissile(){return &ms;};
     void drawMissile(sf::RenderWindow *parent,sf::Clock* cl,Point2D *msille);
     bool checkCollision(sf::RenderWindow* super,double x,double y);
@@ -72,5 +76,6 @@ public:
     void drawFire(sf::RenderWindow *parent,sf::Clock* cl);
     void addFireImg(std::string path);
     void loadExsploutionSound(std::string path);
+    bool checkHit(Point2D *p,float load) ;
 };
 #endif //GKLAB_TANK_H
