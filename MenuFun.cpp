@@ -12,6 +12,7 @@ void ecapeEnd(Engine *parent){
 }
 void menuRun(Engine *super) {
     super->clear(super->menu.getBackGround());
+
     super->getFrame()->draw(super->menu.getLabel()->getText());
     super->menu.newGame.onSelected(super->getFrame(),super->getEvent());
     if(super->menu.newGame.onClicked(super->getFrame(),super->getEvent())){
@@ -64,7 +65,7 @@ void menuSetUp(Engine *super) {
     Point2D p(320.0,20.0);
     super->menu.getLabel()->setPos(p);
 
-
+    super->menu.loadMusic("s");
     super->menu.newGame.setPosX(250.0);
     super->menu.newGame.setPosY(130.0);
     super->menu.newGame.setWidth(300);
@@ -90,6 +91,7 @@ void menuSetUp(Engine *super) {
     super->menu.endButton.setHight(50);
     super->menu.endButton.setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");
 
+    super->menu.music.play();
 
 }
 void menuClear(Engine *super){

@@ -146,7 +146,8 @@ void GameSetUp(Engine *super) {
     super->game.pauseMenu.GetExit()->setHight(50);
     super->game.pauseMenu.GetExit()->setImages("Resource/image/base5.png", "Resource/image/selected5.png",
                                                "Resource/image/clicked.png");
-
+    super->game.getPlayer1()->getTank()->loadExsploutionSound("Resource/Sounds/explosion.wav");
+    super->game.getPlayer2()->getTank()->loadExsploutionSound("Resource/Sounds/explosion.wav");
 
     super->game.pauseMenu.GetSaveAndExit()->setPosX(250.0);
     super->game.pauseMenu.GetSaveAndExit()->setPosY(330.0);

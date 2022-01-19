@@ -179,9 +179,13 @@ void Tank::fireFun(sf::RenderWindow *parent) {
         loading = true;
         ms.setPosX(posX);
         ms.setPosY(posY);
-        //sound.play();
+        //sound.setPlayingOffset(sf::seconds(15.f));
+        sound.play();
+
         float rot = painter.getRotation();
         ms.setRot(rot);
+       //sound.play();
+
     }
 
 
@@ -191,9 +195,10 @@ void Tank::fireFun(sf::RenderWindow *parent,int condytion) {
         loading = true;
         ms.setPosX(posX);
         ms.setPosY(posY);
-        //sound.play();
+        sound.play();
         float rot = painter.getRotation();
         ms.setRot(rot);
+        //sound.play();
     }
 
 
@@ -282,6 +287,7 @@ void Tank::drawMissile(sf::RenderWindow *parent,sf::Clock* cl,Point2D *msille) {
     if (t>3) {
         ms.setCount(0);
         this->loading = false;
+        sound.stop();
     }
     step1 = 0;
 
@@ -360,7 +366,10 @@ void Tank::addFireImg(std::string path) {
     fiereImg.push_front(img);
 }
 void Tank::loadExsploutionSound(std::string path){
-   // sf::SoundBuffer buffer;
-   // buffer.loadFromFile(path);
-   // sound.setBuffer(buffer);
+    //sf::SoundBuffer buffer;
+    //buffer.loadFromFile("Resource/Sounds/explosion.wav");
+    //sound.setBuffer(buffer);
+     sound.openFromFile("Resource/Sounds/explosion.wav");
+    sound.setVolume(50.f);
+    sound.setLoop(false);
 }

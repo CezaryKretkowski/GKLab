@@ -34,6 +34,7 @@ private:
     bool loading=false;
     int hit;
     std::list<sf::Image> fiereImg;
+    sf::Music sound;
 
 public:
     sf::Vector2u getSize(){
