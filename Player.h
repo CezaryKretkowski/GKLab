@@ -20,6 +20,6 @@ public:
     ,sf::Keyboard::Key right,sf::Keyboard::Key fire);
     void  setUpTank(Point2D pos,std::vector<Obstycle>* obstycle,std::string skin,std::string missile,sf::Keyboard::Key up,sf::Keyboard::Key down,sf::Keyboard::Key left
             ,sf::Keyboard::Key right,sf::Keyboard::Key fire);
-
+    void setMissileCoords(){missileCoords.setX(0);missileCoords.setY(0);}
 };
 #endif //GKLAB_PLAYER_H

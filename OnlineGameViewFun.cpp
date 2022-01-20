@@ -65,6 +65,8 @@ void onlineGameSetUP(Engine* super){
     super->game.endGame.getTitle()->setSize(25);
     super->game.endGame.getTitle()->setFont("gunplay.ttf");
     super->game.endGame.getTitle()->setPos(Point2D(280, 100));
+    super->onlineGame.getPlayer1()->getTank()->loadExsploutionSound("Resource/Sounds/explosion.wav");
+    super->onlineGame.getPlayer2()->getTank()->loadExsploutionSound("Resource/Sounds/explosion.wav");
 
 
 
@@ -143,6 +145,7 @@ void onlineGameRun(Engine* super){
 
     else{
         double fire=0;
+        int i=0;
         super->onlineGame.getLabel()->setString("P1 :"+std::to_string(super->onlineGame.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->onlineGame.getPlayer2()->getPoints())  );
 
 
@@ -161,6 +164,8 @@ void onlineGameRun(Engine* super){
         super->onlineGame.drawObstycles(super->getFrame());
         if(super->onlineGame.getPlayer1()->getTank()->getLoad())
             fire=1;
+        else
+            fire=0;
 
         super->onlineGame.networkClass.SendPos(super->onlineGame.getPlayer1()->getTank()->getPosX(),super->onlineGame.getPlayer1()->getTank()->getPosY(),
                                                super->onlineGame.getPlayer1()->getTank()->getAngle(),
@@ -174,14 +179,18 @@ void onlineGameRun(Engine* super){
 
         if (super->onlineGame.getPlayer1()->getTank()->checkHit(super->onlineGame.getPlayer2()->getMissileCords(), 0)) {
             puts("hitt");
+            i++;
+            // super->onlineGame.getPlayer2()->setMissileCoords();
+        } if(i<0){
             super->onlineGame.getPlayer1()->setPoints(super->onlineGame.getPlayer1()->getPoints() - 1);
         }
+            super->onlineGame.getPlayer2()->getTank()->drawMissile(super->getFrame(),super->getClock(),super->onlineGame.getPlayer2()->getMissileCords());
         //  printf("Player2 %f  , %f\n",super->onlineGame.getPlayer1()->getMissileCords()->getX(),super->onlineGame.getPlayer1()->getMissileCords()->getY());
 
 
         super->onlineGame.getPlayer2()->getTank()->draw(super->getFrame());
         super->onlineGame.getPlayer2()->getTank()->fireFun(super->getFrame(),super->onlineGame.networkClass.buffer[6]);
-        super->onlineGame.getPlayer2()->getTank()->drawMissile(super->getFrame(),super->getClock(),super->onlineGame.getPlayer2()->getMissileCords());
+
 
 
     }

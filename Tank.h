@@ -14,33 +14,38 @@
 #include <list>
 
 class Tank{
+    /**Klasa reperezentująca obiekt Tank
+     **/
 private:
-    sf::Image skin;
-    sf::Texture texture;
-    std::string skinName;
-    float posX;
-    float posY;
-    int angle;
-    sf::Keyboard::Key up;
-    sf::Keyboard::Key down;
-    sf::Keyboard::Key left;
-    sf::Keyboard::Key right;
-    sf::Keyboard::Key fire;
-    sf::Sprite painter;
-    std::vector<Obstycle>::iterator i;
-    int step=0;
+    sf::Image skin;  /// Obiekt przchowujący obraz czołgu
+    sf::Texture texture; /// Obiekt preczhuwjący txture czolu
+    std::string skinName;/// ścieżka do pliku img z obrazem czołgu
+    float posX;/// wpólżędna x pozycji czolgu
+    float posY;/// wpólżędna y pozycji czolgu
+    int angle;/// kąt odchylenia czolgu
+    sf::Keyboard::Key up;/// Klawisz odpowiedzialny za ruch czolgu w górę
+    sf::Keyboard::Key down;/// Klawisz odpowiedzialny za ruch czolgu w dół
+    sf::Keyboard::Key left;/// Klawisz odpowiedzialny za ruch czolgu w lewo
+    sf::Keyboard::Key right;/// Klawisz odpowiedzialny za ruch czolgu w prawo
+    sf::Keyboard::Key fire;/// Klawisz odpowiedzialny za odawanie strzału
+    sf::Sprite painter;/// Obiekt służący do wyrysowania czoług na ekranie
+    std::vector<Obstycle>::iterator i;/// lista zwierające wspolżedne przeszkud na mapie
+    int step=0;/// zmienna wykorzystana do generowania opużnienia w poruszaniu się czolgu
     int step1=0;
-    Missile ms;
-    bool loading=false;
-    int hit;
+    Missile ms;/// obiek reprezętujący pocisk
+    bool loading=false;/// zmienna wykorzystywana do zasyuowania przeładowania
+    int hit;/// zmienna wykorzystywan a do detekcji trafienia
     std::list<sf::Image> fiereImg;
-    sf::Music sound;
+    sf::Music sound;///Obiekt słuzaćy do wyświetlnie muzyki
 
 public:
+    ///Metoda służąca do pobierania rozmianu czołgu
     sf::Vector2u getSize(){
         return  skin.getSize();
     }
+    ///Metoda zwracająca wartość
     bool getLoad(){return loading;}
+
     std::string getSkin(){return skinName;}
     std::vector<Obstycle>* obstycleList;
     sf::Vector2f ofset;
