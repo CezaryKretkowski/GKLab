@@ -15,7 +15,7 @@
 #include "../EndGame.h"
 #include "ConectingScreen.h"
 #include "ClientServer.h"
-///@class Zawierajca pola i metody do obsługi trybu online
+///@class OnlineGameView Zawierajca pola i metody do obsługi trybu online
 class OnlineGameView{
 private:
     ///Obiekt pierwszego gracza

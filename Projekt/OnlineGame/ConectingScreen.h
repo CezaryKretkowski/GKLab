@@ -4,7 +4,7 @@
 
 #ifndef GKLAB_CONECTINGSCREEN_H
 #define GKLAB_CONECTINGSCREEN_H
-/**@class Klasa zawierająca widok służacy do ustalenia połazzenia **/
+/**@class ConectingScreen Klasa zawierająca widok służacy do ustalenia połazzenia **/
 class ConectingScreen{
 private:
     ///Obiekt zwaierający nagłówek

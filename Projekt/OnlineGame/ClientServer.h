@@ -5,7 +5,7 @@
 #ifndef SERVER_CLIENTSERVER_H
 #define SERVER_CLIENTSERVER_H
 #include <SFML/Network.hpp>
-/**@class Kalsa odpowiedzialna za grą online */
+/**@class  ClientServer Kalsa odpowiedzialna za grą online */
 class ClientServer{
 public:
     //ClientServer(unsigned short =5000);
