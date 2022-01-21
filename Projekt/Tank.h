@@ -50,8 +50,7 @@ private:
     int step1 = 0;
     /// obiek reprezętujący pocisk
     Missile ms;
-    /// zmienna wykorzystywana do zasyuowania przeładowania
-    bool loading = false;
+
     /// zmienna wykorzystywan a do detekcji trafienia
     int hit;
     std::list<sf::Image> fiereImg;
@@ -59,6 +58,8 @@ private:
     sf::Music sound;
 
 public:
+    /// zmienna wykorzystywana do zasyuowania przeładowania
+    bool loading = false;
     ///Metoda służąca do pobierania rozmianu czołgu
     sf::Vector2u getSize() {
         return skin.getSize();

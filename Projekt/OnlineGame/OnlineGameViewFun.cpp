@@ -4,6 +4,7 @@
 #include "OnlineGameViewFun.h"
 #include "ClientServer.h"
 #include "../MenuFun.h"
+int licznik=0,licznik2=0;
 void LoadMapObstycel(Engine *super);
 void DrawOponent(Engine* super,float Data[4]);
 void onlineGameSetUP(Engine* super){
@@ -38,12 +39,7 @@ void onlineGameSetUP(Engine* super){
                                               sf::Keyboard::S, sf::Keyboard::D, sf::Keyboard::A, sf::Keyboard::Space);
 
 
-    super->onlineGame.getPlayer1()->getTank()->setPosX(500);
-    super->onlineGame.getPlayer1()->getTank()->setPosY(500);
 
-
-    super->onlineGame.getPlayer2()->getTank()->setPosX(100);
-    super->onlineGame.getPlayer2()->getTank()->setPosY(100);
 
 
     super->onlineGame.getLabel()->setColor(sf::Color::Red);
@@ -70,6 +66,7 @@ void onlineGameSetUP(Engine* super){
 
 
 
+
 }
 void onlineGameRun(Engine* super){
     super->clear(sf::Color::Black);
@@ -92,6 +89,12 @@ void onlineGameRun(Engine* super){
             if( data[0]==1 && data[1]==2&& data[2]==3&& data[3]==4){
                 super->onlineGame.conection=true;
             super->onlineGame.networkClass.socket.setBlocking(false);
+                super->onlineGame.getPlayer1()->getTank()->setPosX(500);
+                super->onlineGame.getPlayer1()->getTank()->setPosY(500);
+
+
+                super->onlineGame.getPlayer2()->getTank()->setPosX(100);
+                super->onlineGame.getPlayer2()->getTank()->setPosY(100);
             }
         }
         if(super->onlineGame.scren.GetCreteGame()->onClicked(super->getFrame(),super->getEvent())){
@@ -110,6 +113,12 @@ void onlineGameRun(Engine* super){
             if( data[0]==1 && data[1]==2&& data[2]==3&& data[3]==4) {
                 super->onlineGame.conection = true;
                 super->onlineGame.networkClass.socket.setBlocking(false);
+                super->onlineGame.getPlayer1()->getTank()->setPosX(100);
+                super->onlineGame.getPlayer1()->getTank()->setPosY(100);
+
+
+                super->onlineGame.getPlayer2()->getTank()->setPosX(500);
+                super->onlineGame.getPlayer2()->getTank()->setPosY(500);
             }
         }
     }else if ((super->onlineGame.getPlayer1()->getPoints() < 0) || (super->onlineGame.getPlayer2()->getPoints() < 0)) {
@@ -144,8 +153,8 @@ void onlineGameRun(Engine* super){
 
 
     else{
-        double fire=0;
-        int i=0;
+        float fire=0.f;
+        int i=licznik;
         super->onlineGame.getLabel()->setString("P1 :"+std::to_string(super->onlineGame.getPlayer1()->getPoints())+ "/P2 :"+std::to_string(super->onlineGame.getPlayer2()->getPoints())  );
 
 
@@ -162,10 +171,10 @@ void onlineGameRun(Engine* super){
 
 
         super->onlineGame.drawObstycles(super->getFrame());
-        if(super->onlineGame.getPlayer1()->getTank()->getLoad())
-            fire=1;
+        if(super->onlineGame.getPlayer1()->getTank()->getLoad()==true)
+            fire=1.f;
         else
-            fire=0;
+            fire=0.f;
 
         super->onlineGame.networkClass.SendPos(super->onlineGame.getPlayer1()->getTank()->getPosX(),super->onlineGame.getPlayer1()->getTank()->getPosY(),
                                                super->onlineGame.getPlayer1()->getTank()->getAngle(),
@@ -179,13 +188,19 @@ void onlineGameRun(Engine* super){
 
         if (super->onlineGame.getPlayer1()->getTank()->checkHit(super->onlineGame.getPlayer2()->getMissileCords(), 0)) {
             puts("hitt");
-            i++;
+            printf("%d\n",licznik2);
+            licznik++;
             // super->onlineGame.getPlayer2()->setMissileCoords();
-        } if(i<0){
+        } if(licznik>0&&licznik2<1){
+            puts("na;iczenie");
             super->onlineGame.getPlayer1()->setPoints(super->onlineGame.getPlayer1()->getPoints() - 1);
+            printf("%d\n",licznik2);
+            licznik=0;
         }
             super->onlineGame.getPlayer2()->getTank()->drawMissile(super->getFrame(),super->getClock(),super->onlineGame.getPlayer2()->getMissileCords());
-        //  printf("Player2 %f  , %f\n",super->onlineGame.getPlayer1()->getMissileCords()->getX(),super->onlineGame.getPlayer1()->getMissileCords()->getY());
+       //   printf("Player2 %f  , %f ,%f\n",super->onlineGame.getPlayer2()->getMissileCords()->getX(),super->onlineGame.getPlayer2()->getMissileCords()->getY(),
+         //        super->onlineGame.networkClass.buffer[6]);
+
 
 
         super->onlineGame.getPlayer2()->getTank()->draw(super->getFrame());
@@ -206,14 +221,25 @@ void DrawOponent(Engine* super,float Data[7]){
     if(Data[2]!=super->onlineGame.getPlayer2()->getTank()->getAngle())
         super->onlineGame.getPlayer2()->getTank()->setAngel(Data[2]);
 
-    if(Data[3]!=super->onlineGame.getPlayer2()->getMissileCords()->getX())
+    if(Data[3]!=super->onlineGame.getPlayer2()->getMissileCords()->getX()){
         super->onlineGame.getPlayer2()->getMissileCords()->setX(Data[3]);
-    if(Data[4]!=super->onlineGame.getPlayer2()->getMissileCords()->getY())
+        licznik2=1;
+    }else
+        licznik2=0;
+
+    if(Data[4]!=super->onlineGame.getPlayer2()->getMissileCords()->getY()) {
         super->onlineGame.getPlayer2()->getMissileCords()->setY(Data[4]);
+        licznik2=1;
+    }else if(licznik2!=1)
+        licznik2=0;
+
     if(Data[5]!=super->onlineGame.getPlayer2()->getPoints())
         super->onlineGame.getPlayer2()->setPoints(Data[5]);
     if(Data[5]==0)
         super->onlineGame.getPlayer2()->setPoints(Data[5]-1);
+    //if(Data[6]!=(float)super->onlineGame.getPlayer2()->getTank()->getLoad())
+
+
 
 
 }
