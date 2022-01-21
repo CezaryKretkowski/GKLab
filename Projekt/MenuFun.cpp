@@ -95,7 +95,7 @@ void menuSetUp(Engine *super) {
     super->menu.endButton.setHight(50);
     super->menu.endButton.setImages("Resource/image/base2.png","Resource/image/selected2.png","Resource/image/clicked.png");
 
-    super->menu.music.play();
+   // super->menu.music.play();
 
 }
 void menuClear(Engine *super){

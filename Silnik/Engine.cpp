@@ -49,10 +49,10 @@ bool Engine::init(int wHeight,int wWidth,int mode,int frameRate,bool KeyBoardON,
     //}
 
     switch (mode) {
-        case 1:this->frame = new sf::RenderWindow(sf::VideoMode(wHeight, wWidth), "SFML Window", sf::Style::Fullscreen);
+        case 1:this->frame = new sf::RenderWindow(sf::VideoMode(wHeight, wWidth), "Tanks", sf::Style::Fullscreen);
 
             break;
-        default:this->frame=new sf::RenderWindow(sf::VideoMode(wHeight, wWidth), "SFML Window");
+        default:this->frame=new sf::RenderWindow(sf::VideoMode(wHeight, wWidth), "Tanks");
 
             break;
     }
