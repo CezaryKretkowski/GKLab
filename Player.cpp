@@ -9,8 +9,8 @@ void Player::setUpTank(std::vector<Obstycle>* obstycle,std::string skin,std::str
     tank.setPosX(100.0);
     tank.setPosY(100.0);
     tank.setAngel(0.0);
-    tank.ofset.x=15;
-    tank.ofset.y=25;
+    tank.ofset.x=tank.getSize().x/2;;
+    tank.ofset.y=tank.getSize().y/2;;
     tank.setUpKey(up);
     tank.setDownKey(down);
     tank.setLeftKey(left);

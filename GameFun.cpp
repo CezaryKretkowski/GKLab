@@ -63,6 +63,7 @@ void GameRun(Engine *super) {
         super->game.endGame.GetExit()->onSelected(super->getFrame(), super->getEvent());
         if (super->game.endGame.GetExit()->onClicked(super->getFrame(), super->getEvent())) {
             super->game.setPasue(false);
+            super->game.setLoad(false);
             super->setEnd(true);
             super->game.getPlayer1()->setPoints(10);
             super->game.getPlayer2()->setPoints(10);
@@ -126,6 +127,8 @@ void GameSetUp(Engine *super) {
                                             sf::Keyboard::Down, sf::Keyboard::Right, sf::Keyboard::Left,
                                             sf::Keyboard::P);
         randomObstycel(super);
+        super->game.getPlayer1()->setPoints(10);
+        super->game.getPlayer2()->setPoints(10);
     }
     super->game.background.loadFromFille("Resource/image/map5.jpg");
     super->game.getLabel()->setColor(sf::Color::Red);

@@ -11,14 +11,9 @@ void ecapeEnd(Engine *parent){
     parent->getFrame()->close();
     std::cout<<"działa"<<std::endl;
 }
-    /// @param Wskażnik na Obiekt Engine
+
 void menuRun(Engine *super) {
-    /**Metoda słuząca do wyswietlania zadeklorawanego w w pliku MainMenu.h Widoku
-     * Jako parametr przyjmuje wskażnik do silnika gry dzieki czemu możliwe są wszystkie akcje silnika
-     * np. ryowanie obługa klawiatóry
-     * Ta metoda będzie wywoływana co każdą iteracje głównej pętli
-     * Odpowiedzialna jest za logikę gry  między innymi obłsugę przycisków
-     * Oraz uruchamienie poszczególnych typów gry**/
+
     super->clear(super->menu.getBackGround());
 
     super->getFrame()->draw(super->menu.getLabel()->getText());
@@ -60,13 +55,9 @@ void menuRun(Engine *super) {
         super->getFrame()->close();
     }
 }
-/// @param Wskażnik na Obiekt Engine
+
 void menuSetUp(Engine *super) {
-    /**Metoda ODpowiedzialna jest za ustawienie parametrów widoku menu między innymi ustawienie
-     * odpowiedniego tła wczytanie i uruchomienie muzyki
-     * Wczytywane na tym etapie wczytywane sa rownież tekstury przycisków oraz inicjalizowane
-     * niezbęden epola kasy Mainmenu
-     * Metoda jest wywoływana zwsze przed staretem pętli  która wyświetla menu. **/
+
     KeyListener end(sf::Keyboard::G,&ecapeEnd);
     super->addKeyListener(end);
     super->menu.setBackground("Menu2.jpg");
@@ -107,7 +98,6 @@ void menuSetUp(Engine *super) {
     super->menu.music.play();
 
 }
-/// @param Wskażnik na Obiekt Engine
 void menuClear(Engine *super){
     /**Metoda służąca do sprzątania pamięci oraz zerowania wskażników
      * Wywoływana jest w moencie przejścia z menu gry do innego menu lub w momencie zakończenia
