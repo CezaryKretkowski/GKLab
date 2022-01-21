@@ -5,17 +5,17 @@
 #ifndef GKLAB_GAMEVIEW_H
 #define GKLAB_GAMEVIEW_H
 
-#include "Tank.h"
+#include "../Tank.h"
 #include <SFML/Graphics.hpp>
-#include "Obstycle.h"
+#include "../Obstycle.h"
 #include <vector>
-#include "Player.h"
-#include "Label.h"
+#include "../Player.h"
+#include "../Label.h"
 #include <list>
-#include "Button.h"
+#include "../Button.h"
 #include "Pause.h"
-#include "BitmapHandler.h"
-#include "EndGame.h"
+#include "../../Silnik/BitmapHandler.h"
+#include "../EndGame.h"
 
 /**@class Klasa opisująca główny tryb gry*/
 class GameView {

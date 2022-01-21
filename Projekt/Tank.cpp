@@ -4,7 +4,7 @@
 #include "Tank.h"
 #include <iostream>
 #include <cmath>
-#include "PrimitiveRenderer.h"
+#include "../Silnik/PrimitiveRenderer.h"
 
 #define PI 3.14159265
 

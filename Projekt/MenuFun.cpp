@@ -3,8 +3,8 @@
 //
 #include "MenuFun.h"
 #include <iostream>
-#include "GameFun.h"
-#include "OnlineGameViewFun.h"
+#include "SinglPlayerGame/GameFun.h"
+#include "OnlineGame/OnlineGameViewFun.h"
 void ecapeEnd(Engine *parent){
     ///Metoda słuząca do zamykania okna gry
     parent->setEnd(false);

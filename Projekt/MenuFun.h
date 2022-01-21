@@ -4,7 +4,7 @@
 
 #ifndef GKLAB_MENUFUN_H
 #define GKLAB_MENUFUN_H
-#include "Engine.h"
+#include "../Silnik/Engine.h"
 /**Metoda słuząca do wyswietlania zadeklorawanego w w pliku MainMenu.h Widoku
  * Jako parametr przyjmuje wskażnik do silnika gry dzieki czemu możliwe są wszystkie akcje silnika
  * np. ryowanie obługa klawiatóry

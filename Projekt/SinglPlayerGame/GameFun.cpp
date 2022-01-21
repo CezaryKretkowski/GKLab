@@ -3,7 +3,7 @@
 //
 #include <iostream>
 #include "GameFun.h"
-#include "MenuFun.h"
+#include "../MenuFun.h"
 
 void randomObstycel(Engine *super);
 

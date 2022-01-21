@@ -3,7 +3,7 @@
 //
 #include "OnlineGameViewFun.h"
 #include "ClientServer.h"
-#include "MenuFun.h"
+#include "../MenuFun.h"
 void LoadMapObstycel(Engine *super);
 void DrawOponent(Engine* super,float Data[4]);
 void onlineGameSetUP(Engine* super){

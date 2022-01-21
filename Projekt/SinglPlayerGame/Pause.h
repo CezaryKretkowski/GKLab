@@ -4,8 +4,8 @@
 
 #ifndef GKLAB_PAUSE_H
 #define GKLAB_PAUSE_H
-#include "Button.h"
-#include "Label.h"
+#include "../Button.h"
+#include "../Label.h"
 /**@class Klasa pouse kalsa mająca na cele obsługę pauzy
  *
  */

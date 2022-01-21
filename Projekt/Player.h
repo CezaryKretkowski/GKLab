@@ -5,7 +5,7 @@
 #ifndef GKLAB_PLAYER_H
 #define GKLAB_PLAYER_H
 #include "Tank.h"
-#include "Point2D.h"
+#include "../Silnik/Point2D.h"
 /**@class
  * Klas reprezętująca gracza
  */

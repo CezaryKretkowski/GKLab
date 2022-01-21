@@ -4,7 +4,7 @@
 
 #ifndef GKLAB_GAMEFUN_H
 #define GKLAB_GAMEFUN_H
-#include "Engine.h"
+#include "../../Silnik/Engine.h"
 /**Metoda odpowiedzialna z główną logike trybu gry. W tej metodzie realizowny jest ruch graczy po planszy ,detekcja kolizji oraza trafień.
  * W tej pętli realizowne jest wyświetlanie wszystki obiektów na planszy .
  *

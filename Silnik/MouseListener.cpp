@@ -2,7 +2,7 @@
 // Created by cezar on 15.10.2021.
 //
 #include "MouseListener.h"
-#include "Label.h"
+#include "../Projekt/Label.h"
 #include <iostream>
 void MouseListener::mouseMove(sf::RenderWindow *parent,sf::Event event) {
    if(event.type==sf::Event::MouseMoved) {

@@ -11,7 +11,7 @@
 #include "Missile.h"
 #include <iostream>
 #include "Obstycle.h"
-#include "Point2D.h"
+#include "../Silnik/Point2D.h"
 #include <list>
 
 /** @class Klasa reperezentująca obiekt Tank

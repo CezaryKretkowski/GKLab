@@ -5,13 +5,13 @@
 #ifndef GKLAB_ENGINE_H
 #define GKLAB_ENGINE_H
 #include <SFML/Graphics.hpp>
-#include "MainMenu.h"
-#include "GameView.h"
+#include "../Projekt/MainMenu.h"
+#include "../Projekt/SinglPlayerGame/GameView.h"
 #include "KeyListener.h"
 #include "MouseListener.h"
 #include <list>
 #include "DemoView.h"
-#include "OnlineGameView.h"
+#include "../Projekt/OnlineGame/OnlineGameView.h"
 //#define Path
 #define  FullScreenMode 1
 #define  WindowMode 0
